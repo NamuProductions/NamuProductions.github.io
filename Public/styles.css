@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f44336;
+    color: white;
+    width: 400px;
+    height: 150px;
+    padding: 130px;
+    border-radius: 35px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 34px;
+    z-index: 9999;
+}
+.container1 {
+    display: inline-block;
+    position: relative;
+    margin-right: 20px; /* Espacio entre las imágenes */
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 50px; /* Ajusta la posición vertical del texto (10px desde la parte inferior) */
+    left: 50%; /* Centra horizontalmente el texto */
+    transform: translateX(-50%); /* Centra el texto horizontalmente */
+    color: orangered; /* Color del texto */
+    font-size: 39px; /* Tamaño de fuente del texto */
+    font-weight: bold; /* Peso de fuente del texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    padding: 5px 10px; /* Espaciado interno del texto */
+    border-radius: 5px; /* Borde redondeado */
+}
+
+
+.container {
+    text-align: center;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #666;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#weather-data {
+    list-style-type: none;
+    padding: 0;
+}
+
+#weather-data li {
+    margin-bottom: 10px;
+}
+
+
+

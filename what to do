@@ -1,0 +1,18 @@
+
+Casos de uso requeridos:
+1. Cargar un conjunto de preguntas (estáticas o extraídas de una API pública como la Base de Datos de Trivia Abierta).
+2. Mostrar una pregunta con múltiples respuestas.
+3. Seguir el puntaje del usuario basado en respuestas correctas.
+4. Proporcionar retroalimentación a los usuarios si están correctos o equivocados.
+5. Pasar a la siguiente pregunta después de hacer clic en "siguiente".
+6. Cuando todas las preguntas hayan sido respondidas, mostrar la puntuación final y una pantalla de fin.
+7. Proporcionar una forma para que el usuario reinicie el juego.
+
+Casos de uso buenos de tener:
+1. Agregar un temporizador de cuenta regresiva para cada pregunta.
+2. Permitir a los usuarios elegir una categoría o nivel de dificultad.
+3. Seguir y mostrar las puntuaciones más altas utilizando localStorage.
+4. Utilizar animaciones para la transición entre preguntas.
+5. Implementar un concepto de comodín, por ejemplo, permitir a los usuarios "saltar" un cierto número de preguntas.
+6. Integrar funcionalidad de registro/inicio de sesión para hacer un seguimiento de múltiples usuarios y sus respectivas puntuaciones.
+7. Efectos de sonido o música de fondo para mejorar la experiencia del usuario.
