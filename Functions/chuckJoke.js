@@ -1,4 +1,4 @@
-export function chuckJoke() {
+function chuckJoke() {
     const popupChuck = document.getElementById('popupChuck');
     fetch(`https://api.chucknorris.io/jokes/random`)
         .then(response=>{
