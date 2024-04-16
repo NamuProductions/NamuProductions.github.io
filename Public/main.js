@@ -1,6 +1,7 @@
 import {showScreen} from "../Functions/showScreen.js";
 import {getName} from "../Functions/getName.js";
 import {popupName} from "../Functions/popupName.js";
+import {chooseTheme} from "../Functions/1chooseTheme.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -14,7 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
         getName(nameForm);
 
         root.appendChild(popupName());
+        root.removeChild(nameScreen);
+
+        root.appendChild(chooseTheme());
+
     });
-});
+   });
 
 
