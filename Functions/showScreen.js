@@ -1,4 +1,4 @@
-function showScreen() {
+export function showScreen() {
     const nameScreen = document.createElement('div');
     nameScreen.innerHTML = `
     <div id="nameScreen" class="container">
