@@ -1,4 +1,4 @@
-function popupName () {
+export function popupName () {
     const popupName = document.createElement('popup');
     popupName.textContent = `¡wAw! ${playerName} IS A STRANGE NAME`;
     popupName.style.display = 'block';

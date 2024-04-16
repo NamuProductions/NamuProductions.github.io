@@ -1,4 +1,5 @@
 import {showScreen} from "../Functions/showScreen.js";
+import {getName} from "../Functions/getName.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {

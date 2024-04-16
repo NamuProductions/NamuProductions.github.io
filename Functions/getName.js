@@ -1,6 +1,6 @@
 let playerName = "";
 
-function getName() {
+export function getName() {
 
         const inputGamingName = document.getElementById('input-gaming-name').value;
         if (inputGamingName.trim() !== "") {
