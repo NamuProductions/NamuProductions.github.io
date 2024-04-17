@@ -29,12 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
         sports.addEventListener('click', function (){
             root.innerHTML= '';
             root.appendChild(chuckJoke());
-            // root.appendChild(sportsQuestionsScreen());
+            root.appendChild(sportsQuestionsScreen());
         });
         nature.addEventListener('click', function(){
             root.innerHTML='';
             root.appendChild(chuckJoke());
-            // root.appendChild(natureQuestionsScreen());
+            root.appendChild(natureQuestionsScreen());
         });
     });
 

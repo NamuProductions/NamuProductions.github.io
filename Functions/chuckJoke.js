@@ -15,6 +15,11 @@ export function chuckJoke() {
             chuckSentence.textContent = data.value;
             popupChuck.appendChild(chuckSentence);
             console.log(chuckSentence.textContent);
+            popupChuck.style.display = 'block';
+
+            setTimeout(()=>{
+                popupChuck.style.display = 'none';
+            }, 3500);
         });
 
     return popupChuck;
