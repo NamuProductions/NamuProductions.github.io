@@ -17,9 +17,14 @@ export function popupName () {
     messageText.textContent = `is a StrangE NamE`;
     messageText.style.display = 'none';
 
+    const chooseThemeText = document.createElement('p');
+    chooseThemeText.textContent = `Now You Choose The Theme!`;
+    chooseThemeText.style.display = `none`;
+
     popupName.appendChild(wawText);
     popupName.appendChild(playerNameText);
     popupName.appendChild(messageText);
+    popupName.appendChild(chooseThemeText);
 
     popupName.style.display = 'block';
 
@@ -35,9 +40,14 @@ export function popupName () {
     }, 600);
 
 
+    setTimeout(()=>{
+        messageText.style.display = 'none';
+        chooseThemeText.style.display = `block`;
+    }, 1700);
+
     setTimeout(function () {
         popupName.style.display = 'none';
-    }, 1200);
+    }, 2900);
     console.log(playerName);
 
     return popupName;

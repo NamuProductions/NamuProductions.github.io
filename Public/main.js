@@ -2,6 +2,8 @@ import {showScreen} from "../Functions/showScreen.js";
 import {getName} from "../Functions/getName.js";
 import {popupName} from "../Functions/popupName.js";
 import {chooseTheme} from "../Functions/1chooseTheme.js";
+import {sportsQuestionsScreen} from "../Functions/sportsQuestionsScreen.js";
+import {natureQuestionsScreen} from "../Functions/natureQuestionsScreen.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -19,7 +21,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         root.appendChild(chooseTheme());
 
+        const sports = document.getElementById('sports');
+        const nature = document.getElementById('nature');
+        sports.addEventListener('click', function (){
+            root.innerHTML= '';
+            root.appendChild(sportsQuestionsScreen());
+        });
+        nature.addEventListener('click', function(){
+            root.innerHTML='';
+            root.appendChild(natureQuestionsScreen());
+        });
     });
-   });
+
+
+});
 
 
