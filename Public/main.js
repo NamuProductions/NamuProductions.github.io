@@ -4,6 +4,7 @@ import {popupName} from "../Functions/popupName.js";
 import {chooseTheme} from "../Functions/1chooseTheme.js";
 import {sportsQuestionsScreen} from "../Functions/sportsQuestionsScreen.js";
 import {natureQuestionsScreen} from "../Functions/natureQuestionsScreen.js";
+import {chuckJoke} from "../Functions/chuckJoke.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -14,8 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const nameForm = document.getElementById('name-form');
     nameForm.addEventListener('submit', function (event) {
         event.preventDefault();
-        getName(nameForm);
-
+        const playerName = getName(nameForm);
+        if (playerName === "") {
+            throw new Error('Name needed');
+        }
         root.appendChild(popupName());
         root.removeChild(nameScreen);
 
@@ -25,11 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const nature = document.getElementById('nature');
         sports.addEventListener('click', function (){
             root.innerHTML= '';
-            root.appendChild(sportsQuestionsScreen());
+            root.appendChild(chuckJoke());
+            // root.appendChild(sportsQuestionsScreen());
         });
         nature.addEventListener('click', function(){
             root.innerHTML='';
-            root.appendChild(natureQuestionsScreen());
+            root.appendChild(chuckJoke());
+            // root.appendChild(natureQuestionsScreen());
         });
     });
 

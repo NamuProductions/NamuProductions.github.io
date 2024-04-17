@@ -1,16 +1,21 @@
-function chuckJoke() {
-    const popupChuck = document.getElementById('popupChuck');
+export function chuckJoke() {
+    const popupChuck = document.createElement('div');
+    popupChuck.classList.add('popup');
+
+    const chuckSentence = document.createElement('p');
+
     fetch(`https://api.chucknorris.io/jokes/random`)
-        .then(response=>{
-            if(response.ok) {
+        .then(response => {
+            if (response.ok) {
                 return response.json()
             }
+            throw new Error('Network response was not ok.');
         })
         .then(data => {
-            popupChuck.textContent = data.value;
-        })
-    popupChuck.style.display = 'block';
-    popupChuck.addEventListener('click', function() {
-        popupChuck.style.display = 'none';
-    });
+            chuckSentence.textContent = data.value;
+            popupChuck.appendChild(chuckSentence);
+            console.log(chuckSentence.textContent);
+        });
+
+    return popupChuck;
 }
