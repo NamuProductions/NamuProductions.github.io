@@ -31,15 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
         sports.addEventListener('click', function (){
             root.innerHTML= '';
             root.appendChild(chuckJoke());
-
             root.appendChild(sportsQuestionsScreen());
+            root.appendChild(apiQuiz());
         });
         nature.addEventListener('click', function(){
             root.innerHTML='';
             root.appendChild(chuckJoke());
+            root.appendChild(natureQuestionsScreen());
             root.appendChild(apiQuiz());
 
-            // root.appendChild(natureQuestionsScreen(apiQuiz()));
         });
     });
 
