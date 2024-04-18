@@ -5,6 +5,7 @@ import {chooseTheme} from "../Functions/1chooseTheme.js";
 import {sportsQuestionsScreen} from "../Functions/sportsQuestionsScreen.js";
 import {natureQuestionsScreen} from "../Functions/natureQuestionsScreen.js";
 import {chuckJoke} from "../Functions/chuckJoke.js";
+import {apiQuiz} from "../Functions/apiQuiz.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -29,12 +30,16 @@ document.addEventListener("DOMContentLoaded", function () {
         sports.addEventListener('click', function (){
             root.innerHTML= '';
             root.appendChild(chuckJoke());
-            root.appendChild(sportsQuestionsScreen());
+            root.appendChild(apiQuiz());
+
+            // root.appendChild(sportsQuestionsScreen());
         });
         nature.addEventListener('click', function(){
             root.innerHTML='';
             root.appendChild(chuckJoke());
-            root.appendChild(natureQuestionsScreen());
+            root.appendChild(apiQuiz());
+
+            // root.appendChild(natureQuestionsScreen());
         });
     });
 
