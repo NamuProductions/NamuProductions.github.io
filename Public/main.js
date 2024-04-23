@@ -1,49 +1,44 @@
-import {showScreen} from "../Functions/showScreen.js";
-import {getName} from "../Functions/getName.js";
-import {popupName} from "../Functions/popupName.js";
-import {chooseTheme} from "../Functions/1chooseTheme.js";
-import {sportsQuestionsScreen} from "../Functions/sportsQuestionsScreen.js";
-import {natureQuestionsScreen} from "../Functions/natureQuestionsScreen.js";
-import {chuckJoke} from "../Functions/chuckJoke.js";
-import {apiQuiz} from "../Functions/apiQuiz.js";
-// import {getQuestion} from "../Functions/getQuestion.js";
+import { displayQuestions } from "../Functions/displayQuestions.js";
+import { fetchQuestions } from "../Functions/fetchQuestions.js";
+import { checkAnswer } from "../Functions/checkAnswer.js";
 
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        const root = document.getElementById('root');
+        const questions = await fetchQuestions();
+        const quizContainer = displayQuestions(questions);
+        root.appendChild(quizContainer);
 
-document.addEventListener("DOMContentLoaded", function () {
-    const root = document.getElementById('root');
-    const nameScreen = showScreen();
-    root.appendChild(nameScreen);
-
-    const nameForm = document.getElementById('name-form');
-    nameForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const playerName = getName(nameForm);
-        if (playerName === "") {
-            throw new Error('Name needed');
-        }
-        root.appendChild(popupName());
-        root.removeChild(nameScreen);
-
-        root.appendChild(chooseTheme());
-
-        const sports = document.getElementById('sports');
-        const nature = document.getElementById('nature');
-        sports.addEventListener('click', function (){
-            root.innerHTML= '';
-            root.appendChild(chuckJoke());
-            root.appendChild(sportsQuestionsScreen());
-            root.appendChild(apiQuiz());
+        quizContainer.addEventListener('click', (event) => {
+            const selectedOption = event.target.textContent;
+            const correctAnswer = event.target.dataset.correctAnswer;
+            if (selectedOption) {
+                const isCorrect = checkAnswer(selectedOption, correctAnswer);
+                if (isCorrect) {
+                    console.log('¡Correct!');
+                } else {
+                    console.log('Wrong, the correct answer is: ' + correctAnswer);
+                }
+            }
         });
-        nature.addEventListener('click', function(){
-            root.innerHTML='';
-            root.appendChild(chuckJoke());
-            root.appendChild(natureQuestionsScreen());
-            root.appendChild(apiQuiz());
-
-        });
-    });
-
-
+    } catch (error) {
+        console.error('Error initializing quiz:', error);
+    }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

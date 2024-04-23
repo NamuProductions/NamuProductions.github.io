@@ -1,3 +1,11 @@
+si, claro, yo tengo que poder comprobar que los casos de uso se cumplen, es decir, yo inicio la aplicación y tengo que poder comprobar que
+- Se cargan una serie de preguntas DONE
+- Se muestran preguntas con multiples respuestas DONE
+- Se mantiene una puntuación basada en mis respuestas correctas
+- Me da feedback cuando respondo correcta o incorrectamente DONE
+- Puedo pasar a la siguiente pregunta pulsando "next" DONE
+- Cuando he respondido a todas las preguntas me sale una puntuación final y una pantalla de fin
+- Me da una forma de iniciar el juego de nuevo
 
 Casos de uso requeridos:
 1. Cargar un conjunto de preguntas (estáticas o extraídas de una API pública como la Base de Datos de Trivia Abierta).
@@ -16,3 +24,4 @@ Casos de uso buenos de tener:
 5. Implementar un concepto de comodín, por ejemplo, permitir a los usuarios "saltar" un cierto número de preguntas.
 6. Integrar funcionalidad de registro/inicio de sesión para hacer un seguimiento de múltiples usuarios y sus respectivas puntuaciones.
 7. Efectos de sonido o música de fondo para mejorar la experiencia del usuario.
+
