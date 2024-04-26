@@ -1,11 +1,10 @@
-import {theAnswerIs} from "./theAnswerIs.js";
+import { theAnswerIs } from "./theAnswerIs.js";
 
-export function updateQuestions(currentQuestionIndex, questions, questionContainer, nextButton, answered, score) {
+export function updateQuestions(currentQuestionIndex, questions, questionContainer, nextButton, score) {
+    questionContainer.innerHTML = '';
     const question = questions[currentQuestionIndex].question;
     const options = questions[currentQuestionIndex].incorrect_answers.concat(questions[currentQuestionIndex].correct_answer);
     options.sort(() => Math.random() - 0.5);
-
-    questionContainer.innerHTML = '';
 
     const questionElement = document.createElement('h1');
     questionElement.textContent = question;
@@ -17,12 +16,14 @@ export function updateQuestions(currentQuestionIndex, questions, questionContain
         optionButton.classList.add('option-button');
         optionButton.correctAnswer = questions[currentQuestionIndex].correct_answer;
         optionButton.addEventListener('click', () => {
-                const isCorrect = theAnswerIs(optionButton);
-                if (isCorrect) {
-                    score++;
-                }
-                nextButton.disabled = false;
+            const isCorrect = theAnswerIs(optionButton);
+            if (isCorrect) {
+                score++;
+            }
+            nextButton.style.display = 'block';
         });
         questionContainer.appendChild(optionButton);
     });
+
+    nextButton.style.display = 'none';
 }
