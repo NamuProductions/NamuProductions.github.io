@@ -1,10 +1,10 @@
-import {updateQuestions} from "./updateQuestions.js";
+import {handleRestartButton} from "./restartButtonHandler.js";
 
 export function showEndScreen(score, totalQuestions, currentQuestionIndex) {
     const apiQuizContainer = document.querySelector('.container1');
     const questionContainer = document.querySelector('.question-container');
 
-    // solucion barata pero tendríamos que encontrar de donde sale el puto next
+    // TODO: solucion barata pero tendríamos que encontrar de donde sale el puto next
     const nextButtons = document.querySelectorAll('body .next-button');
     nextButtons.forEach(button => {
         button.style.display = 'none';
@@ -22,13 +22,9 @@ export function showEndScreen(score, totalQuestions, currentQuestionIndex) {
     const restartButton = document.createElement('button');
     restartButton.textContent = 'New Game';
     restartButton.classList.add('restart-button');
-    restartButton.addEventListener('click', () => {
-        currentQuestionIndex = 0;
-        score = 0;
-        updateQuestions(currentQuestionIndex);
-        apiQuizContainer.removeChild(endScreen);
-    });
     endScreen.appendChild(restartButton);
 
     apiQuizContainer.appendChild(endScreen);
+
+    handleRestartButton(apiQuizContainer, currentQuestionIndex);
 }
