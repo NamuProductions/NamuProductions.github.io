@@ -3,7 +3,12 @@ import {updateQuestions} from "./updateQuestions.js";
 export function showEndScreen(score, totalQuestions, currentQuestionIndex) {
     const apiQuizContainer = document.querySelector('.container1');
     const questionContainer = document.querySelector('.question-container');
-    const nextButton = document.querySelector('.next-button');
+
+    // solucion barata pero tendríamos que encontrar de donde sale el puto next
+    const nextButtons = document.querySelectorAll('body .next-button');
+    nextButtons.forEach(button => {
+        button.style.display = 'none';
+    });
 
     questionContainer.innerHTML = '';
 
@@ -21,9 +26,7 @@ export function showEndScreen(score, totalQuestions, currentQuestionIndex) {
         currentQuestionIndex = 0;
         score = 0;
         updateQuestions(currentQuestionIndex);
-        nextButton.disabled = true;
         apiQuizContainer.removeChild(endScreen);
-        questionContainer.appendChild(nextButton);
     });
     endScreen.appendChild(restartButton);
 
