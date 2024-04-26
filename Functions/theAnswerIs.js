@@ -11,6 +11,5 @@ export function theAnswerIs(optionButton) {
     optionButtons.forEach(button => {
         button.disabled = true;
     });
-
     return isCorrect;
 }

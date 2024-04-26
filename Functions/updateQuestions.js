@@ -1,4 +1,5 @@
 import { theAnswerIs } from "./theAnswerIs.js";
+import {updateScore} from "./updateScore.js";
 
 export function updateQuestions(currentQuestionIndex, questions, questionContainer, nextButton, score) {
     questionContainer.innerHTML = '';
@@ -18,7 +19,7 @@ export function updateQuestions(currentQuestionIndex, questions, questionContain
         optionButton.addEventListener('click', () => {
             const isCorrect = theAnswerIs(optionButton);
             if (isCorrect) {
-                score++;
+                updateScore();
             }
             nextButton.style.display = 'block';
         });
