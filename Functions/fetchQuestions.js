@@ -5,6 +5,7 @@ export async function fetchQuestions() {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        console.log(data);
         return data.results;
     } catch (error) {
         console.error('Error fetching questions:', error);

@@ -1,6 +1,6 @@
 import {theAnswerIs} from "./theAnswerIs.js";
 
-export function updateQuestions(currentQuestionIndex, questions, questionContainer, nextButton, answered) {
+export function updateQuestions(currentQuestionIndex, questions, questionContainer, nextButton, answered, score) {
     const question = questions[currentQuestionIndex].question;
     const options = questions[currentQuestionIndex].incorrect_answers.concat(questions[currentQuestionIndex].correct_answer);
     options.sort(() => Math.random() - 0.5);
@@ -17,14 +17,11 @@ export function updateQuestions(currentQuestionIndex, questions, questionContain
         optionButton.classList.add('option-button');
         optionButton.correctAnswer = questions[currentQuestionIndex].correct_answer;
         optionButton.addEventListener('click', () => {
-            if (!answered) {
                 const isCorrect = theAnswerIs(optionButton);
                 if (isCorrect) {
                     score++;
                 }
-                answered = true;
                 nextButton.disabled = false;
-            }
         });
         questionContainer.appendChild(optionButton);
     });
