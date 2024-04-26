@@ -22,7 +22,7 @@ export function displayQuestion(questions, questionContainer, apiQuizContainer) 
         optionButton.classList.add('option-button');
         optionButton.correctAnswer = questions[currentQuestionIndex].correct_answer;
         optionButton.addEventListener('click', () => {
-            const isCorrect = theAnswerIs(optionButton);
+            const isCorrect = theAnswerIs(optionButton, score);
             if (isCorrect) {
                 updateScore();
             }
