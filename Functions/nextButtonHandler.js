@@ -1,5 +1,5 @@
-import { updateQuestions } from "./updateQuestions.js";
 import { showEndScreen } from "./showEndScreen.js";
+import {displayQuestion} from "./displayQuestion.js";
 
 export function createNextButton(updateQuestion, currentQuestionIndex, questions, questionContainer, score) {
     const nextButton = document.createElement('button');
@@ -9,7 +9,7 @@ export function createNextButton(updateQuestion, currentQuestionIndex, questions
     nextButton.addEventListener('click', () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < questions.length) {
-            updateQuestions(currentQuestionIndex, questions, questionContainer, nextButton, score);
+            displayQuestion(currentQuestionIndex, questions, questionContainer, nextButton, score);
         } else {
             showEndScreen(score, questions.length);
         }
