@@ -1,7 +1,7 @@
-import {theAnswerIs} from "./theAnswerIs.js";
-import {updateScore} from "./updateScore.js";
-import {createNextButton} from "./nextButtonHandler.js";
-import {updateQuestions} from "./updateQuestions.js";
+import { theAnswerIs } from "./theAnswerIs.js";
+import { updateScore } from "./updateScore.js";
+import { createNextButton } from "./nextButtonHandler.js";
+import { updateIndex } from "./updateIndex.js";
 
 let nextButton;
 
@@ -22,6 +22,7 @@ export function displayQuestion(questions, questionContainer, apiQuizContainer) 
         optionButton.classList.add('option-button');
         optionButton.correctAnswer = questions[currentQuestionIndex].correct_answer;
         optionButton.addEventListener('click', () => {
+            console.log(currentQuestionIndex);
             const isCorrect = theAnswerIs(optionButton, score);
             if (isCorrect) {
                 updateScore();
@@ -32,7 +33,7 @@ export function displayQuestion(questions, questionContainer, apiQuizContainer) 
     });
 
     if (!nextButton) {
-        nextButton = createNextButton(updateQuestions, currentQuestionIndex, questions, questionContainer, score);
+        nextButton = createNextButton(updateIndex, currentQuestionIndex, questions, questionContainer, score); // Actualizamos el nombre de la función
         nextButton.style.display = 'none';
     }
 
@@ -41,4 +42,6 @@ export function displayQuestion(questions, questionContainer, apiQuizContainer) 
     } else {
         nextButton.style.display = 'none';
     }
+
+    currentQuestionIndex = updateIndex(currentQuestionIndex);
 }
