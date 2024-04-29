@@ -4,11 +4,11 @@ export function showEndScreen(score, totalQuestions, currentQuestionIndex) {
     const apiQuizContainer = document.querySelector('.container1');
     const questionContainer = document.querySelector('.question-container');
 
-    // TODO: solucion barata pero tendríamos que encontrar de donde sale el puto next
-    const nextButtons = document.querySelectorAll('body .next-button');
-    nextButtons.forEach(button => {
-        button.style.display = 'none';
-    });
+    // // TODO: solucion barata pero tendríamos que encontrar de donde sale el puto next
+    // const nextButtons = document.querySelectorAll('body .next-button');
+    // nextButtons.forEach(button => {
+    //     button.style.display = 'none';
+    // });
 
     questionContainer.innerHTML = '';
 
