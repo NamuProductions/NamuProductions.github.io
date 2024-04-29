@@ -6,8 +6,7 @@ import { updateIndex } from "./updateIndex.js";
 let nextButton;
 
 export function displayQuestion(questions, questionContainer, apiQuizContainer) {
-    let currentQuestionIndex = 0;
-    let score = 0;
+
 
     questionContainer.innerHTML = '';
     const questionElement = document.createElement('h1');

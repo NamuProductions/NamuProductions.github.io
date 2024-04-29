@@ -1,4 +1,4 @@
-export function getQuestionByIndex (questions, gameState) {
+export function questionByIndex (questions, gameState) {
 const currentIndex = gameState.currentIndex;
 const currentQuestion = questions[currentIndex];
 const questionText = currentQuestion.question;
