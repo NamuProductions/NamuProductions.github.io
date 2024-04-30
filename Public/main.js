@@ -1,8 +1,10 @@
 import { onStart } from "../Functions/onStart.js";
+import { gameState } from "./index.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const startButton = document.getElementById('startButton');
-    startButton.addEventListener('click', onStart);
+    console.log(gameState);
+    startButton.addEventListener('click', ()=> onStart(gameState));
 });
 
 
