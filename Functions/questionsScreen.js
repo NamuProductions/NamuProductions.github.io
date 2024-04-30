@@ -1,43 +1,52 @@
-export function questionsScreen(onAnswer, onNext) {
+import {questionByIndex} from "./questionByIndex.js";
+import {theAnswerIs} from "./theAnswerIs.js";
+import {gameState} from "./gameState.js";
+
+export function questionsScreen(onAnswer, onNext, currentIndex, questions) {
+    console.log('questionScreen');
     const screen = document.createElement('div');
-    questionContainer.innerHTML = '';
+    if (questions && gameState) {
+        if (gameState.currentQuestionIndex >= 0 && gameState.currentQuestionIndex < questions.length) {
+            const currentQuestion = questionByIndex(questions, gameState);
+            const {question, correctAnswer, possibleAnswers} = currentQuestion;
 
-    const currentQuestion = questions[currentQuestionIndex];
-    const { question, correct_answer, incorrect_answers } = currentQuestion;
+            showQuestion(screen, question);
 
-    showQuestion(questionContainer, question);
+            const shuffledOptions = shuffle(possibleAnswers);
 
-    const options = incorrect_answers.concat(correct_answer);
-    const shuffledOptions = shuffle(options);
+            showOptions(screen, shuffledOptions);
 
-    showOptions(questionContainer, shuffledOptions);
+            const nextButton = createNextButton(screen);
+            nextButton.style.display = 'none';
+            nextButton.addEventListener('click', onNext);
 
-    const nextButton = createNextButton(questionContainer);
-    nextButton.style.display = 'none';
-    apiQuizContainer.appendChild(nextButton);
+            screen.querySelectorAll('.option-button').forEach(optionButton => {
+                optionButton.addEventListener('click', () => {
+                    theAnswerIs(optionButton, correctAnswer, nextButton, gameState.score);
+                });
+            });
+        } else {
+            console.error('currentQuestionIndex is out of range or invalid.');
+        }
+    } else {
+        console.error('Questions or gameState is undefined or null.');
+    }
 
-    nextButton.addEventListener('click', onNext);
-
-    questionContainer.querySelectorAll('.option-button').forEach(optionButton => {
-        optionButton.addEventListener('click', () => {
-            handleOptionClick(optionButton, correct_answer, nextButton);
-        });
-    });
     return screen;
 }
 
-function showQuestion(questionContainer, question) {
+function showQuestion(screen, question) {
     const questionElement = document.createElement('h1');
     questionElement.textContent = question;
-    questionContainer.appendChild(questionElement);
+    screen.appendChild(questionElement);
 }
 
-function showOptions(questionContainer, options) {
+function showOptions(screen, options) {
     options.forEach(option => {
         const optionButton = document.createElement('button');
         optionButton.textContent = option;
         optionButton.classList.add('option-button');
-        questionContainer.appendChild(optionButton);
+        screen.appendChild(optionButton);
     });
 }
 
@@ -49,10 +58,10 @@ function shuffle(array) {
     return array;
 }
 
-function createNextButton(questionContainer) {
+function createNextButton(screen) {
     const nextButton = document.createElement('button');
     nextButton.textContent = 'Next';
     nextButton.classList.add('next-button');
-    questionContainer.appendChild(nextButton);
+    screen.appendChild(nextButton);
     return nextButton;
-    }
+}

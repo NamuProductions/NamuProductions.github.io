@@ -6,11 +6,11 @@ export function render(gameState, onStart, onAnswer, onNext) {
         const root = document.getElementById('root');
     root.innerHTML = "";
 
-    if (gameState === 'UNSTARTED') {
+    if (gameState.gameState === 'UNSTARTED') {
         root.append(unstartedScreen(gameState, onStart));
-    } else if (gameState === 'PLAYING') {
+    } else if (gameState.gameState === 'PLAYING') {
         root.append(questionsScreen(gameState, onAnswer, onNext))
-    } else if (gameState === 'GAME_OVER') {
+    } else if (gameState.gameState === 'GAME_OVER') {
         root.append(gameOverScreen(gameState, onStart));
     }
 }

@@ -1,4 +1,4 @@
-import {displayQuestion} from "./displayQuestion.js";
+import {questionByIndex} from "./questionByIndex.js";
 
 
 export function displayQuestions(questions) {
@@ -9,7 +9,7 @@ export function displayQuestions(questions) {
     const questionContainer = document.createElement('div');
     questionContainer.classList.add('question-container');
     apiQuizContainer.appendChild(questionContainer);
-    displayQuestion(questions, questionContainer, apiQuizContainer);
+    questionByIndex(questions, questionContainer, apiQuizContainer);
 
     apiQuizContainer.style.display = 'block';
     console.log('DisplayQuestions done correctly');

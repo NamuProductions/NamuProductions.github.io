@@ -1,10 +1,9 @@
 export function questionByIndex(questions, gameState) {
-    const currentIndex = gameState.currentIndex;
-    const currentQuestion = questions[currentIndex];
+    const currentQuestion = questions[gameState.currentQuestionIndex];
     const questionText = currentQuestion.question;
     const correctAnswer = currentQuestion.correct_answer;
     const possibleAnswers = [...currentQuestion.incorrect_answers, correctAnswer];
-    const totalQuestions = questions.lenght;
+    const totalQuestions = questions.length;
 
     return {
         question: questionText,
