@@ -1,7 +1,7 @@
 import { theAnswerIs } from "./theAnswerIs.js";
 import { onNext } from "./onNext.js";
 
-export function questionsScreen(gameState, questionData) {
+export function questionsScreen(gameState, questionData, questions) {
     const screen = document.createElement('div');
     const messageElement = document.createElement('p');
     messageElement.textContent = 'Holi a questionScreen';
@@ -12,11 +12,12 @@ export function questionsScreen(gameState, questionData) {
 
     const nextButton = createNextButton(screen);
     nextButton.style.display = 'none';
-    nextButton.addEventListener('click', () => onNext(gameState));
+    nextButton.addEventListener('click', () => onNext(gameState, questions));
 
     screen.querySelectorAll('.option-button').forEach(optionButton => {
         optionButton.addEventListener('click', () => {
             theAnswerIs(optionButton, questionData, gameState);
+            console.log(gameState.score)
             nextButton.style.display = 'block';
         });
     });

@@ -11,8 +11,7 @@ export function render(gameState, questions) {
         root.append(unStartedScreen());
     } else if (gameState.gameState === 'PLAYING') {
         const questionData = questionByIndex(gameState, questions)
-        console.log('hemos llegado aquí')
-        root.append(questionsScreen(gameState, questionData));
+        root.append(questionsScreen(gameState, questionData, questions));
     } else if (gameState.gameState === 'GAME_OVER') {
         root.append(gameOverScreen(gameState));
     }

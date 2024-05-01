@@ -1,15 +1,14 @@
 import {render} from "./render.js";
-import {onAnswer} from "./onAnswer.js";
-import {onStart} from "../Public/index.js";
 
-
-export function onNext(gameState) {
+export function onNext(gameState, questions) {
+    console.log(gameState.currentQuestionIndex)
     gameState.currentQuestionIndex++;
+    console.log(gameState.currentQuestionIndex)
 
     if (gameState.currentQuestionIndex < gameState.totalQuestions) {
-        render(gameState, onStart, onAnswer, onNext);
+        render(gameState, questions);
     } else {
         gameState.gameState = 'GAME_OVER';
-        render(gameState, onStart, onAnswer, onNext);
+        render(gameState, questions);
     }
 }
