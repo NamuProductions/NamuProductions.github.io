@@ -1,5 +1,5 @@
 export const gameState = {
-    gameState: 'UNSTARTED',
+    state: 'UNSTARTED',
     currentQuestionIndex: 0,
     score: 0
 };

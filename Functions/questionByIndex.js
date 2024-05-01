@@ -1,8 +1,18 @@
 export function questionByIndex(questions, gameState) {
-    const currentQuestion = questions[gameState.currentQuestionIndex];
-    const questionText = currentQuestion.question;
-    const correctAnswer = currentQuestion.correct_answer;
-    const possibleAnswers = [...currentQuestion.incorrect_answers, correctAnswer];
+    if (!Array.isArray(questions)) {
+        console.error('Questions is not an array.');
+        return null;
+    }
+
+    if (gameState.currentQuestionIndex < 0 || gameState.currentQuestionIndex >= questions.length) {
+        console.error('currentQuestionIndex is out of range or invalid.');
+        return null;
+    }
+
+    const question = questions[gameState.currentQuestionIndex];
+    const questionText = question.question;
+    const correctAnswer = question.correct_answer;
+    const possibleAnswers = [...question.incorrect_answers, correctAnswer];
     const totalQuestions = questions.length;
 
     return {

@@ -1,41 +1,33 @@
-import {questionByIndex} from "./questionByIndex.js";
-import {theAnswerIs} from "./theAnswerIs.js";
+import { questionByIndex } from "./questionByIndex.js";
+import { theAnswerIs } from "./theAnswerIs.js";
+import { onNext } from "./onNext.js";
 
-export function questionsScreen(onAnswer, onNext, currentIndex, questions, gameState) {
-    console.log('questionScreen');
+export function questionsScreen(gameState, questions) {
     const screen = document.createElement('div');
-    if (questions && gameState) {
-        if (gameState.currentQuestionIndex >= 0 && gameState.currentQuestionIndex < questions.length) {
-            const currentQuestion = questionByIndex(questions, gameState.currentQuestionIndex);
-            const {question, correctAnswer, possibleAnswers} = currentQuestion;
+    const messageElement = document.createElement('p');
+    messageElement.textContent = '¡Bienvenido al juego de preguntas!';
+    screen.appendChild(messageElement);
 
-            showQuestion(screen, question);
+    const currentQuestion = questionByIndex(questions, gameState);
 
-            const shuffledOptions = shuffle(possibleAnswers);
+    showQuestion(screen, currentQuestion.question);
+    showOptions(screen, currentQuestion.possibleAnswers);
 
-            showOptions(screen, shuffledOptions);
+    const nextButton = createNextButton(screen);
+    nextButton.style.display = 'none';
+    nextButton.addEventListener('click', () => onNext(gameState));
 
-            const nextButton = createNextButton(screen);
-            nextButton.style.display = 'none';
-            nextButton.addEventListener('click', onNext);
-
-            screen.querySelectorAll('.option-button').forEach(optionButton => {
-                optionButton.addEventListener('click', () => {
-                    theAnswerIs(optionButton, correctAnswer, nextButton, gameState.score);
-                });
-            });
-        } else {
-            console.error('currentQuestionIndex is out of range or invalid.');
-        }
-    } else {
-        console.error('Questions or gameState is undefined or null.');
-    }
+    screen.querySelectorAll('.option-button').forEach(optionButton => {
+        optionButton.addEventListener('click', () => {
+            theAnswerIs(optionButton, currentQuestion.correctAnswer, nextButton, gameState);
+            nextButton.style.display = 'block';
+        });
+    });
 
     return screen;
 }
 
 function showQuestion(screen, question) {
-    console.log('showQuestion place');
     const questionElement = document.createElement('h1');
     questionElement.textContent = question;
     screen.appendChild(questionElement);
@@ -48,14 +40,6 @@ function showOptions(screen, options) {
         optionButton.classList.add('option-button');
         screen.appendChild(optionButton);
     });
-}
-
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
 }
 
 function createNextButton(screen) {
