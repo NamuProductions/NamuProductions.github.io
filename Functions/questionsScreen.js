@@ -1,13 +1,12 @@
 import {questionByIndex} from "./questionByIndex.js";
 import {theAnswerIs} from "./theAnswerIs.js";
-import {gameState} from "./gameState.js";
 
-export function questionsScreen(onAnswer, onNext, currentIndex, questions) {
+export function questionsScreen(onAnswer, onNext, currentIndex, questions, gameState) {
     console.log('questionScreen');
     const screen = document.createElement('div');
     if (questions && gameState) {
         if (gameState.currentQuestionIndex >= 0 && gameState.currentQuestionIndex < questions.length) {
-            const currentQuestion = questionByIndex(questions, gameState);
+            const currentQuestion = questionByIndex(questions, gameState.currentQuestionIndex);
             const {question, correctAnswer, possibleAnswers} = currentQuestion;
 
             showQuestion(screen, question);
@@ -36,6 +35,7 @@ export function questionsScreen(onAnswer, onNext, currentIndex, questions) {
 }
 
 function showQuestion(screen, question) {
+    console.log('showQuestion place');
     const questionElement = document.createElement('h1');
     questionElement.textContent = question;
     screen.appendChild(questionElement);
