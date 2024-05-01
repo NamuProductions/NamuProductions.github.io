@@ -1,7 +1,7 @@
-export function gameOverScreen(onStart) {
-    const screen = document.createElement('div');
-    const apiQuizContainer = document.createElement('.container1');
+export function gameOverScreen(gameState, onStart) {
+    const { score, totalQuestions } = gameState;
 
+    const screen = document.createElement('div');
     screen.classList.add('end-screen');
 
     const scoreMessage = document.createElement('h2');
@@ -11,9 +11,8 @@ export function gameOverScreen(onStart) {
     const restartButton = document.createElement('button');
     restartButton.textContent = 'New Game';
     restartButton.classList.add('restart-button');
+    restartButton.addEventListener('click', onStart);
     screen.appendChild(restartButton);
-
-    apiQuizContainer.appendChild(screen);
 
     return screen;
 }

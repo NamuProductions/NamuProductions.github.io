@@ -1,11 +1,15 @@
 import { fetchQuestions } from "../Functions/fetchQuestions.js";
 import { startGame } from "../Functions/startGame.js";
+import {gameState} from "../Functions/gameState.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const startButton = document.getElementById('startButton');
     startButton.addEventListener('click', async function () {
         try {
             const questions = await fetchQuestions();
+            gameState.totalQuestions = questions.length;
+            console.log(gameState.totalQuestions);
+            console.log(gameState.gameState);
             startGame(questions);
         } catch (error) {
             console.error('Error initializing quiz:', error);
