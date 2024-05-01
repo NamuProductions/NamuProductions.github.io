@@ -19,7 +19,7 @@ export function questionsScreen(gameState, questions) {
 
     screen.querySelectorAll('.option-button').forEach(optionButton => {
         optionButton.addEventListener('click', () => {
-            theAnswerIs(optionButton, currentQuestion.correctAnswer, nextButton, gameState);
+            theAnswerIs(optionButton, currentQuestion, gameState);
             nextButton.style.display = 'block';
         });
     });

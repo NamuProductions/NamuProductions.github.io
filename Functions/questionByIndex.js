@@ -9,10 +9,10 @@ export function questionByIndex(questions, gameState) {
         return null;
     }
 
-    const question = questions[gameState.currentQuestionIndex];
-    const questionText = question.question;
-    const correctAnswer = question.correct_answer;
-    const possibleAnswers = [...question.incorrect_answers, correctAnswer];
+    const questionData = questions[gameState.currentQuestionIndex];
+    const questionText = questionData.question;
+    const correctAnswer = questionData.correct_answer;
+    const possibleAnswers = [...questionData.incorrect_answers, correctAnswer];
     const totalQuestions = questions.length;
 
     return {

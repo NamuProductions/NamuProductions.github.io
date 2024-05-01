@@ -3,13 +3,13 @@ import {onAnswer} from "./onAnswer.js";
 import {onStart} from "../Public/index.js";
 
 
-export function onNext(totalQuestions, gameState) {
+export function onNext(gameState) {
     gameState.currentQuestionIndex++;
 
-    if (gameState.currentQuestionIndex < totalQuestions) {
-        render(gameState, onStart, onAnswer, onNext, totalQuestions);
+    if (gameState.currentQuestionIndex < gameState.totalQuestions) {
+        render(gameState, onStart, onAnswer, onNext);
     } else {
         gameState.gameState = 'GAME_OVER';
-        render(gameState, onStart, onAnswer, onNext, totalQuestions);
+        render(gameState, onStart, onAnswer, onNext);
     }
 }

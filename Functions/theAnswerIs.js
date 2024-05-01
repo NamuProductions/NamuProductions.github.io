@@ -1,12 +1,12 @@
 import {updateScore} from "./updateScore.js";
 
-export function theAnswerIs(optionButton, score) {
+export function theAnswerIs(optionButton, currentQuestion, gameState) {
     const selectedOption = optionButton.textContent;
-    const correctAnswer = optionButton.correctAnswer;
+    const correctAnswer = currentQuestion.correctAnswer;
     const isCorrect = selectedOption === correctAnswer
     if (isCorrect) {
         console.log('Correct ' + correctAnswer);
-        score = updateScore(score, true)
+        gameState.score = updateScore(gameState, true)
     } else {
         console.log(selectedOption +' is wrong, the correct answer is: ' + correctAnswer);
     }
@@ -14,5 +14,5 @@ export function theAnswerIs(optionButton, score) {
     optionButtons.forEach(button => {
         button.disabled = true;
     });
-    return {isCorrect, score};
+    return {isCorrect, gameState};
 }
