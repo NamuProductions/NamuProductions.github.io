@@ -74,7 +74,6 @@ function createNextButton(screen) {
 }
 
 function renderGameOverScreen() {
-    console.log('estamos en last window')
     const screen = document.createElement('div');
     screen.classList.add('end-screen');
 

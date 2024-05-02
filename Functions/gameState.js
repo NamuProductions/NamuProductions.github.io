@@ -11,7 +11,7 @@ export const gameState = {
 export function setQuestions(questions) {
     gameState.questions = questions;
     gameState.totalQuestions = questions.length;
-    console.log('Questions in gameStage');
+    console.log(gameState.gameStage);
 }
 export function startGame() {
     gameState.gameStage = 'PLAYING';
@@ -27,6 +27,7 @@ export function clickNext(gameState) {
         render(gameState);
     } else {
         gameState.gameStage = 'GAME_OVER';
+        console.log(gameState.gameStage);
         render(gameState);
     }
 }
