@@ -12,7 +12,7 @@ export function restartButtonHandler() {
     const startButton = document.getElementById('startButton');
     startButton.addEventListener('click', async function () {
         try {
-            gameState.gameState = 'UNSTARTED';
+            gameState.gameStage = 'UNSTARTED';
             gameState.currentQuestionIndex = 0;
             gameState.score = 0;
             gameState.totalQuestions = 0;
@@ -21,7 +21,7 @@ export function restartButtonHandler() {
             gameState.totalQuestions = questions.length;
 
             console.log(gameState.totalQuestions);
-            console.log(gameState.gameState);
+            console.log(gameState.gameStage);
             onStart(gameState, questions);
         } catch (error) {
             console.error('Error initializing quiz:', error);
