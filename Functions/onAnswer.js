@@ -8,5 +8,5 @@ export function onAnswer(selectedAnswer) {
     }
 
 
-    onNext();
+    clickNext();
 }

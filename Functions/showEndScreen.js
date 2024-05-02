@@ -1,4 +1,4 @@
-import {handleRestartButton} from "./restartButtonHandler.js";
+import {handleRestartButton} from "./restartGame.js";
 
 export function showEndScreen(score, totalQuestions, currentQuestionIndex) {
     const apiQuizContainer = document.querySelector('.container1');

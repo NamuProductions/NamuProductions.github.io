@@ -1,6 +1,5 @@
-import {gameState, startGame} from './gameState.js';
-import { onNext } from "./onNext.js";
-import { theAnswerIs } from "./theAnswerIs.js";
+import {gameState, startGame, clickNext, restartGame} from './gameState.js';
+import {theAnswerIs} from "./theAnswerIs.js";
 import {questionByIndex} from "./questionByIndex.js";
 
 const root = document.getElementById('root');
@@ -38,7 +37,7 @@ function renderGameScreen(questionData) {
 
     const nextButton = createNextButton(screen);
     nextButton.style.display = 'none';
-    nextButton.addEventListener('click', () => onNext(gameState));
+    nextButton.addEventListener('click', () => clickNext(gameState));
 
     screen.querySelectorAll('.option-button').forEach(optionButton => {
         optionButton.addEventListener('click', () => {
@@ -75,5 +74,21 @@ function createNextButton(screen) {
 }
 
 function renderGameOverScreen() {
-    // Renderizar la pantalla de fin de juego (puntuación, botón de reinicio, etc.)
+    console.log('estamos en last window')
+    const screen = document.createElement('div');
+    screen.classList.add('end-screen');
+
+    const scoreMessage = document.createElement('h2');
+    scoreMessage.textContent = `Your score is: ${gameState.score} / ${gameState.totalQuestions}`;
+    screen.appendChild(scoreMessage);
+
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'New Game';
+    restartButton.classList.add('restart-button');
+    restartButton.addEventListener('click', () => restartGame());
+    screen.appendChild(restartButton);
+
+    root.appendChild(screen);
+    return screen;
+
 }
