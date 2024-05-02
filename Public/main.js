@@ -1,14 +1,14 @@
 import { fetchQuestions } from "../Functions/fetchQuestions.js";
-import {gameState} from "../Functions/gameState.js";
+import {initializeGameState, gameState} from "../Functions/gameState.js";
 import {onStart} from "./index.js";
+
 
 document.addEventListener("DOMContentLoaded", async function () {
     const startButton = document.getElementById('startButton');
     startButton.addEventListener('click', async function () {
         try {
             const questions = await fetchQuestions();
-            gameState.totalQuestions = questions.length;
-            console.log(gameState.totalQuestions);
+            initializeGameState(questions);
             console.log(gameState.gameStage);
             onStart(gameState, questions);
         } catch (error) {
