@@ -6,8 +6,12 @@ export const gameState = {
     questions: []
 };
 
-export function initializeGameState(questions) {
+export function setQuestions(questions) {
     gameState.questions = questions;
     gameState.totalQuestions = questions.length;
+    console.log('Questions in gameStage');
 }
-
+export function startGame() {
+    gameState.gameStage = 'PLAYING';
+    console.log(gameState.gameStage);
+    }
