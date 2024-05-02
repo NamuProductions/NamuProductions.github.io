@@ -1,4 +1,6 @@
-export function gameOverScreen(gameState, onStart) {
+import {restartButtonHandler} from "./restartButtonHandler.js";
+
+export function gameOverScreen(gameState) {
     const { score, totalQuestions } = gameState;
 
     const screen = document.createElement('div');
@@ -11,7 +13,7 @@ export function gameOverScreen(gameState, onStart) {
     const restartButton = document.createElement('button');
     restartButton.textContent = 'New Game';
     restartButton.classList.add('restart-button');
-    restartButton.addEventListener('click', onStart);
+    restartButton.addEventListener('click', () => restartButtonHandler());
     screen.appendChild(restartButton);
 
     return screen;

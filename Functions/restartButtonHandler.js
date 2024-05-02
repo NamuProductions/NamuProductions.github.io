@@ -1,25 +1,30 @@
-import { displayQuestions } from "./displayQuestions.js";
 import { fetchQuestions } from "./fetchQuestions.js";
+import { onStart } from "../Public/index.js";
+import { gameState } from "./gameState.js";
 
-export async function handleRestartButton(apiQuizContainer, currentQuestionIndex, score) {
-    const endScreen = apiQuizContainer.querySelector('.end-screen');
-    const restartButton = endScreen.querySelector('.restart-button');
 
-    restartButton.addEventListener('click', async () => {
-        currentQuestionIndex = 0;
-        score = 0;
-        apiQuizContainer.removeChild(endScreen);
+export function restartButtonHandler() {
+
+
+    const root = document.getElementById('root');
+    root.innerHTML = '<button id="startButton">Start Game</button>';
+
+    const startButton = document.getElementById('startButton');
+    startButton.addEventListener('click', async function () {
         try {
+            gameState.gameState = 'UNSTARTED';
+            gameState.currentQuestionIndex = 0;
+            gameState.score = 0;
+            gameState.totalQuestions = 0;
+
             const questions = await fetchQuestions();
-            clearQuizContainer(apiQuizContainer);
-            const quizContainer = displayQuestions(questions);
-            apiQuizContainer.appendChild(quizContainer);
+            gameState.totalQuestions = questions.length;
+
+            console.log(gameState.totalQuestions);
+            console.log(gameState.gameState);
+            onStart(gameState, questions);
         } catch (error) {
             console.error('Error initializing quiz:', error);
         }
     });
-}
-
-function clearQuizContainer(container) {
-    container.innerHTML = '';
 }

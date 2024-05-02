@@ -1,6 +1,6 @@
 export async function fetchQuestions() {
     console.log('fetching');
-    const numberOfQuestions = 3;
+    const numberOfQuestions = 1;
     try {
         const response = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=10&difficulty=easy&type=multiple`);
         if (!response.ok) {

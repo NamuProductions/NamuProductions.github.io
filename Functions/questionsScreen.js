@@ -4,7 +4,6 @@ import { onNext } from "./onNext.js";
 export function questionsScreen(gameState, questionData, questions) {
     const screen = document.createElement('div');
     const messageElement = document.createElement('p');
-    messageElement.textContent = 'Holi a questionScreen';
     screen.appendChild(messageElement);
 
     showQuestion(screen, questionData.question);
