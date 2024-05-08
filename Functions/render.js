@@ -1,4 +1,4 @@
-import {gameState, startGame, clickNext, restartGame} from './gameState.js';
+import {gameState, startGame, nextQuestion, restartGame} from './gameState.js';
 import {theAnswerIs} from "./theAnswerIs.js";
 import {questionByIndex} from "./questionByIndex.js";
 
@@ -37,12 +37,11 @@ function renderGameScreen(questionData) {
 
     const nextButton = createNextButton(screen);
     nextButton.style.display = 'none';
-    nextButton.addEventListener('click', () => clickNext(gameState));
+    nextButton.addEventListener('click', () => nextQuestion(gameState));
 
     screen.querySelectorAll('.option-button').forEach(optionButton => {
         optionButton.addEventListener('click', () => {
             theAnswerIs(optionButton, questionData, gameState);
-            console.log(gameState.score)
             nextButton.style.display = 'block';
         });
     });

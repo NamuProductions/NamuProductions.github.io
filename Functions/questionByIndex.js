@@ -1,5 +1,4 @@
 export function questionByIndex(gameState) {
-    console.log(gameState.questions);
     if (!Array.isArray(gameState.questions)) {
         console.error('Questions is not an array.');
         return null;

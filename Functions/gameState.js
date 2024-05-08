@@ -11,25 +11,20 @@ export const gameState = {
 export function setQuestions(questions) {
     gameState.questions = questions;
     gameState.totalQuestions = questions.length;
-    console.log(gameState.gameStage);
 }
 export function startGame() {
     gameState.gameStage = 'PLAYING';
-    console.log(gameState.gameStage);
     }
 
-export function clickNext(gameState) {
-    console.log(gameState.currentQuestionIndex)
+export function nextQuestion(gameState) {
     gameState.currentQuestionIndex++;
-    console.log(gameState.currentQuestionIndex)
 
     if (gameState.currentQuestionIndex < gameState.totalQuestions) {
-        render(gameState);
     } else {
         gameState.gameStage = 'GAME_OVER';
-        console.log(gameState.gameStage);
-        render(gameState);
     }
+    render(gameState);
+
 }
 
 export function restartGame () {
@@ -37,7 +32,6 @@ export function restartGame () {
     gameState.currentQuestionIndex = 0;
     gameState.score = 0;
     gameState.totalQuestions = 0;
-    console.log(gameState);
 
     location.reload();
 }
