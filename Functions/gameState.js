@@ -33,5 +33,4 @@ export function restartGame () {
     gameState.score = 0;
     gameState.totalQuestions = 0;
 
-    location.reload();
 }

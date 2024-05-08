@@ -83,7 +83,10 @@ function renderGameOverScreen() {
     const restartButton = document.createElement('button');
     restartButton.textContent = 'New Game';
     restartButton.classList.add('restart-button');
-    restartButton.addEventListener('click', () => restartGame());
+    restartButton.addEventListener('click', () => {
+        restartGame();
+        location.reload();
+    });
     screen.appendChild(restartButton);
 
     root.appendChild(screen);
