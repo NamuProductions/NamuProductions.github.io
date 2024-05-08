@@ -41,7 +41,8 @@ function renderGameScreen(questionData) {
 
     screen.querySelectorAll('.option-button').forEach(optionButton => {
         optionButton.addEventListener('click', () => {
-            theAnswerIs(optionButton, questionData, gameState);
+            const result = theAnswerIs(optionButton, questionData, gameState);
+            showAnswer(screen, result);
             nextButton.style.display = 'block';
         });
     });
@@ -71,6 +72,13 @@ function createNextButton(screen) {
     screen.appendChild(nextButton);
     return nextButton;
 }
+
+function showAnswer(screen, result) {
+    const answer = document.createElement('p');
+    answer.textContent = result.isCorrect ? 'Correct!' : `Wrong! The correct answer is: ${result.correctAnswer}`;
+    screen.appendChild(answer);
+}
+
 
 function renderGameOverScreen() {
     const screen = document.createElement('div');

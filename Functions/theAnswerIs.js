@@ -4,7 +4,10 @@ export function theAnswerIs(optionButton, currentQuestion, gameState) {
     const selectedOption = optionButton.textContent;
     const correctAnswer = currentQuestion.correctAnswer;
     const isCorrect = selectedOption === correctAnswer
-    if (isCorrect) {
+
+    gameState.lastSelectedOption = selectedOption;
+
+        if (isCorrect) {
         console.log('Correct ' + correctAnswer);
         gameState.score = updateScore(gameState, true)
     } else {
@@ -14,5 +17,8 @@ export function theAnswerIs(optionButton, currentQuestion, gameState) {
     optionButtons.forEach(button => {
         button.disabled = true;
     });
-    return {isCorrect, gameState};
+    return {
+        isCorrect: isCorrect,
+        correctAnswer: correctAnswer
+    };
 }
