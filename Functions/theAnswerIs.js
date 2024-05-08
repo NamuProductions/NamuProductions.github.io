@@ -7,11 +7,11 @@ export function theAnswerIs(optionButton, currentQuestion, gameState) {
 
     gameState.lastSelectedOption = selectedOption;
 
-        if (isCorrect) {
+    if (isCorrect) {
         console.log('Correct ' + correctAnswer);
         gameState.score = updateScore(gameState, true)
     } else {
-        console.log(selectedOption +' is wrong, the correct answer is: ' + correctAnswer);
+        console.log(selectedOption + ' is wrong, the correct answer is: ' + correctAnswer);
     }
     const optionButtons = document.querySelectorAll('.option-button');
     optionButtons.forEach(button => {
