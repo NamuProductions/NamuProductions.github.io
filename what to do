@@ -1,11 +1,11 @@
 si, claro, yo tengo que poder comprobar que los casos de uso se cumplen, es decir, yo inicio la aplicación y tengo que poder comprobar que
 - Se cargan una serie de preguntas DONE fetchQuestions
 - Se muestran preguntas con multiples respuestas DONE displayQuestions
-- Se mantiene una puntuación basada en mis respuestas correctas updateScore
-- Me da feedback cuando respondo correcta o incorrectamente DONE theAnswerIs
-- Puedo pasar a la siguiente pregunta pulsando "next" DONE next button
-- Cuando he respondido a todas las preguntas me sale una puntuación final y una pantalla de fin done showendScreen
-- Me da una forma de iniciar el juego de nuevo showendscreen
+- Se mantiene una puntuación basada en mis respuestas correctas updateScore DONE
+- Me da feedback cuando respondo correcta o incorrectamente DONE theAnswerIs DONE
+- Puedo pasar a la siguiente pregunta pulsando "next" DONE next button DONE
+- Cuando he respondido a todas las preguntas me sale una puntuación final y una pantalla de fin done showendScreen DONE
+- Me da una forma de iniciar el juego de nuevo showendscreen DONE
 
 Casos de uso requeridos:
 1. Cargar un conjunto de preguntas (estáticas o extraídas de una API pública como la Base de Datos de Trivia Abierta).
