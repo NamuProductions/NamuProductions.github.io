@@ -4,7 +4,7 @@ import {questionByIndex} from "./questionByIndex.js";
 
 const root = document.getElementById('root');
 
-export function render() {
+export function render(gameState) {
     root.innerHTML = '';
 
     if (gameState.gameStage === 'UNSTARTED') {
@@ -22,7 +22,7 @@ function renderStartScreen() {
     startButton.textContent = 'Start Game';
     startButton.addEventListener('click', () => {
         startGame();
-        render();
+        render(gameState);
     });
     root.appendChild(startButton);
 }
