@@ -17,7 +17,7 @@ Casos de uso requeridos:
 7. Proporcionar una forma para que el usuario reinicie el juego.
 
 Casos de uso buenos de tener:
-1. Agregar un temporizador de cuenta regresiva para cada pregunta.
+1. Agregar un temporizador de cuenta regresiva para cada pregunta. DONE
 2. Permitir a los usuarios elegir una categoría o nivel de dificultad.
 3. Seguir y mostrar las puntuaciones más altas utilizando localStorage.
 4. Utilizar animaciones para la transición entre preguntas.
