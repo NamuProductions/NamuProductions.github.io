@@ -10,9 +10,10 @@ export function setQuestions(questions) {
     gameState.questions = questions;
     gameState.totalQuestions = questions.length;
 }
+
 export function startGame() {
     gameState.gameStage = 'PLAYING';
-    }
+}
 
 export function nextQuestion(gameState) {
     gameState.currentQuestionIndex++;
@@ -23,7 +24,7 @@ export function nextQuestion(gameState) {
     }
 }
 
-export function restartGame () {
+export function restartGame() {
     gameState.gameStage = 'UNSTARTED';
     gameState.currentQuestionIndex = 0;
     gameState.score = 0;
