@@ -1,5 +1,3 @@
-import {render} from "./render.js";
-
 export const gameState = {
     gameStage: 'UNSTARTED',
     currentQuestionIndex: 0,
@@ -23,8 +21,6 @@ export function nextQuestion(gameState) {
     } else {
         gameState.gameStage = 'GAME_OVER';
     }
-    render(gameState);
-
 }
 
 export function restartGame () {

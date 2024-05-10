@@ -37,7 +37,10 @@ function renderGameScreen(questionData) {
 
     const nextButton = createNextButton(screen);
     nextButton.style.display = 'none';
-    nextButton.addEventListener('click', () => nextQuestion(gameState));
+    nextButton.addEventListener('click', () => {
+        nextQuestion(gameState);
+        render(gameState);
+    });
 
     screen.querySelectorAll('.option-button').forEach(optionButton => {
         optionButton.addEventListener('click', () => {
