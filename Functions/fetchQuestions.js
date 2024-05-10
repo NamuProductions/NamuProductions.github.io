@@ -1,7 +1,9 @@
+
 export async function fetchQuestions() {
-    const numberOfQuestions = 3;
+    let numberOfQuestions = 3;
+    let difficulty = 'easy';
     try {
-        const response = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=10&difficulty=easy&type=multiple`);
+        const response = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=10&difficulty=${difficulty}&type=multiple`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

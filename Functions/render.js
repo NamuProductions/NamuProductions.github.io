@@ -35,6 +35,23 @@ function renderGameScreen(questionData) {
     showQuestion(screen, questionData.question);
     showOptions(screen, questionData.possibleAnswers);
 
+    const temporizer = document.createElement("time");
+    temporizer.textContent = '15';
+    screen.appendChild(temporizer);
+    let timeLeft = 15;
+    const countdownInterval = setInterval(() => {
+        timeLeft--;
+        temporizer.textContent = timeLeft.toString();
+        if (timeLeft === 0) {
+            clearInterval(countdownInterval);
+            temporizer.textContent = 'Time\'s up, go to the next question!';
+            screen.querySelectorAll('.option-button').forEach(optionButton => {
+                optionButton.disabled = true;
+            });
+            nextButton.style.display = 'block';
+        }
+    }, 1000);
+
     const nextButton = createNextButton(screen);
     nextButton.style.display = 'none';
     nextButton.addEventListener('click', () => {
@@ -44,6 +61,7 @@ function renderGameScreen(questionData) {
 
     screen.querySelectorAll('.option-button').forEach(optionButton => {
         optionButton.addEventListener('click', () => {
+            temporizer.style.display = 'none';
             const result = theAnswerIs(optionButton, questionData, gameState);
             showAnswer(screen, result);
             nextButton.style.display = 'block';
