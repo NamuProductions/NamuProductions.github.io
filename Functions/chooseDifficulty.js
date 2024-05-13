@@ -21,7 +21,6 @@ export function chooseDifficulty() {
             const questions = await fetchQuestions();
             setQuestions(questions);
             render(gameState);
-            document.dispatchEvent(event);
         });
     });
     root.appendChild(difficulty);
