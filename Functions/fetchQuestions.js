@@ -1,7 +1,8 @@
+import {gameState} from "./gameState.js";
 
 export async function fetchQuestions() {
     let numberOfQuestions = 3;
-    let difficulty = 'easy';
+    const difficulty = gameState.selectedDifficulty;
     try {
         const response = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=10&difficulty=${difficulty}&type=multiple`);
         if (!response.ok) {

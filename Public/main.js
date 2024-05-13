@@ -1,12 +1,8 @@
-import {render} from '../Functions/render.js';
-import {fetchQuestions} from '../Functions/fetchQuestions.js';
-import {gameState, setQuestions} from "../Functions/gameState.js";
+import {chooseDifficulty} from "../Functions/chooseDifficulty.js";
 
 async function init() {
     try {
-        const questions = await fetchQuestions();
-        setQuestions(questions);
-        render(gameState);
+        chooseDifficulty();
     } catch (error) {
         console.error('Error initializing game:', error);
     }

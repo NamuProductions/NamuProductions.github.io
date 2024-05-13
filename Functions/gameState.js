@@ -1,4 +1,5 @@
 export const gameState = {
+    selectedDifficulty: "easy",
     gameStage: 'UNSTARTED',
     currentQuestionIndex: 0,
     score: 0,
