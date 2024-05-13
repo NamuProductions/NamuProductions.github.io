@@ -15,9 +15,7 @@ export function chooseDifficulty() {
     const buttons = difficulty.querySelectorAll('button');
     buttons.forEach(button => {
         button.addEventListener('click', async () => {
-            const selectedDifficulty = button.id;
-            const event = new CustomEvent('difficultySelected', {detail: {difficulty: selectedDifficulty}});
-            gameState.selectedDifficulty = selectedDifficulty;
+            gameState.selectedDifficulty = button.id;
             const questions = await fetchQuestions();
             setQuestions(questions);
             render(gameState);
