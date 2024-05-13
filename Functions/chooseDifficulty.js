@@ -18,7 +18,6 @@ export function chooseDifficulty() {
             const selectedDifficulty = button.id;
             const event = new CustomEvent('difficultySelected', {detail: {difficulty: selectedDifficulty}});
             gameState.selectedDifficulty = selectedDifficulty;
-            console.log(gameState.selectedDifficulty);
             const questions = await fetchQuestions();
             setQuestions(questions);
             render(gameState);
