@@ -1,4 +1,4 @@
-import {gameState, startGame, nextQuestion, restartGame} from './gameState.js';
+import {nextQuestion, restartGame, startGame} from './gameState.js';
 import {theAnswerIs} from "./theAnswerIs.js";
 import {questionByIndex} from "./questionByIndex.js";
 
@@ -8,16 +8,16 @@ export function render(gameState) {
     root.innerHTML = '';
 
     if (gameState.gameStage === 'UNSTARTED') {
-        renderStartScreen();
+        renderStartScreen(gameState);
     } else if (gameState.gameStage === 'PLAYING') {
-        const currentQuestionData = questionByIndex(gameState);
-        renderGameScreen(currentQuestionData);
+
+        renderGameScreen(gameState);
     } else if (gameState.gameStage === 'GAME_OVER') {
-        renderGameOverScreen();
+        renderGameOverScreen(gameState);
     }
 }
 
-function renderStartScreen() {
+function renderStartScreen(gameState) {
     const startButton = document.createElement('button');
     startButton.textContent = 'Start Game';
     startButton.addEventListener('click', () => {
@@ -27,7 +27,8 @@ function renderStartScreen() {
     root.appendChild(startButton);
 }
 
-function renderGameScreen(questionData) {
+function renderGameScreen(gameState) {
+    const questionData = questionByIndex(gameState);
     const screen = document.createElement('div');
     const messageElement = document.createElement('p');
     screen.appendChild(messageElement);
@@ -101,7 +102,7 @@ function showAnswer(screen, result) {
 }
 
 
-function renderGameOverScreen() {
+function renderGameOverScreen(gameState) {
     const screen = document.createElement('div');
     screen.classList.add('end-screen');
 
