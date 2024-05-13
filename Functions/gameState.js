@@ -1,6 +1,6 @@
 export const gameState = {
-    selectedDifficulty: "easy",
-    gameStage: 'UNSTARTED',
+    selectedDifficulty: "",
+    gameStage: 'SELECT_DIFFICULTY',
     currentQuestionIndex: 0,
     score: 0,
     totalQuestions: 0,
@@ -26,9 +26,24 @@ export function nextQuestion(gameState) {
 }
 
 export function restartGame() {
-    gameState.gameStage = 'UNSTARTED';
+    gameState.gameStage = 'SELECT_DIFFICULTY';
     gameState.currentQuestionIndex = 0;
     gameState.score = 0;
     gameState.totalQuestions = 0;
 
+}
+
+export const Difficulty = {
+    EASY: 'easy',
+    MEDIUM: 'medium',
+    HARD: 'hard'
+};
+
+export function setDifficulty(difficulty) {
+    if (!difficulty in Difficulty) {
+        throw Error('Invalid difficulty value');
+    } else {
+        gameState.selectedDifficulty = difficulty;
+        gameState.gameStage = 'UN_STARTED';
+    }
 }

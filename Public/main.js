@@ -1,8 +1,9 @@
-import {chooseDifficulty} from "../Functions/chooseDifficulty.js";
+import {render} from "../Functions/render.js";
+import {gameState} from "../Functions/gameState.js";
 
 async function init() {
     try {
-        chooseDifficulty();
+        render(gameState);
     } catch (error) {
         console.error('Error initializing game:', error);
     }

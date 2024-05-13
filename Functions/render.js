@@ -1,19 +1,51 @@
-import {nextQuestion, restartGame, startGame} from './gameState.js';
+import {nextQuestion, restartGame, setDifficulty, setQuestions, startGame} from './gameState.js';
 import {theAnswerIs} from "./theAnswerIs.js";
 import {questionByIndex} from "./questionByIndex.js";
+import {fetchQuestions} from "./fetchQuestions.js";
 
 const root = document.getElementById('root');
 
 export function render(gameState) {
     root.innerHTML = '';
 
-    if (gameState.gameStage === 'UNSTARTED') {
+    if (gameState.gameStage === "SELECT_DIFFICULTY") {
+        renderDifficultyScreen(gameState)
+    }
+    else if (gameState.gameStage === 'UN_STARTED') {
         renderStartScreen(gameState);
     } else if (gameState.gameStage === 'PLAYING') {
-
         renderGameScreen(gameState);
     } else if (gameState.gameStage === 'GAME_OVER') {
         renderGameOverScreen(gameState);
+    }
+}
+
+function renderDifficultyScreen(gameState) {
+    const difficulty = document.createElement('div');
+    difficulty.innerHTML = `
+    <div id="difficulties" class="container1">
+        <h1>CHOOSE DIFFICULTY</h1>
+        <button id="EASY">Easy</button>
+        <button id="MEDIUM">Medium</button>
+        <button id="HARD">Hard</button>
+    </div>`;
+
+    const buttons = difficulty.querySelectorAll('button');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const selectedDifficulty = button.id;
+            setDifficulty(selectedDifficulty);
+            await obtainGameStateQuestions();
+            render(gameState);
+        });
+    });
+
+    root.appendChild(difficulty);
+
+    async function obtainGameStateQuestions() {
+        const questions = await fetchQuestions();
+        setQuestions(questions);
     }
 }
 

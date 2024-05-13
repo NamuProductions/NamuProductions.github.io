@@ -2,14 +2,13 @@ import {gameState} from "./gameState.js";
 
 export async function fetchQuestions() {
     let numberOfQuestions = 3;
-    const difficulty = gameState.selectedDifficulty;
+    const difficulty = gameState.selectedDifficulty.toLowerCase();
     try {
         const response = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=10&difficulty=${difficulty}&type=multiple`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-
         return decodeHTMLCharacters(data.results);
     } catch (error) {
         console.error('Error fetching questions:', error);
