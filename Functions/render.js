@@ -10,8 +10,7 @@ export function render(gameState) {
 
     if (gameState.gameStage === "SELECT_DIFFICULTY") {
         renderDifficultyScreen(gameState)
-    }
-    else if (gameState.gameStage === 'UN_STARTED') {
+    } else if (gameState.gameStage === 'UN_STARTED') {
         renderStartScreen(gameState);
     } else if (gameState.gameStage === 'PLAYING') {
         renderGameScreen(gameState);
@@ -30,6 +29,8 @@ async function renderDifficultyScreen(gameState) {
         <button id="HARD">Hard</button>
     </div>`;
 
+    playBackgroundMusic();
+
     const buttons = difficulty.querySelectorAll('button');
 
     buttons.forEach(button => {
@@ -42,7 +43,6 @@ async function renderDifficultyScreen(gameState) {
     });
 
     root.appendChild(difficulty);
-
 
 
     async function obtainGameStateQuestions() {
@@ -62,11 +62,12 @@ function renderStartScreen(gameState) {
 }
 
 function renderGameScreen(gameState) {
+    stopBackgroundMusic();
+    playQuestionMusic();
     const questionData = questionByIndex(gameState);
     const screen = document.createElement('div');
     const messageElement = document.createElement('p');
     screen.appendChild(messageElement);
-
 
 
     showQuestion(screen, questionData.question);
@@ -148,6 +149,8 @@ function showAnswer(screen, result) {
 
 
 function renderGameOverScreen(gameState) {
+    stopQuestionMusic();
+    playBackgroundMusic();
     const screen = document.createElement('div');
     screen.classList.add('end-screen');
 
@@ -167,4 +170,23 @@ function renderGameOverScreen(gameState) {
     root.appendChild(screen);
     return screen;
 
+}
+
+const questionMusic = document.getElementById('question-music');
+const backgroundMusic = document.getElementById('background-music');
+
+function playBackgroundMusic() {
+    backgroundMusic.play();
+}
+
+function stopBackgroundMusic() {
+    backgroundMusic.pause();
+}
+
+function playQuestionMusic() {
+    questionMusic.play();
+}
+
+function stopQuestionMusic() {
+    questionMusic.pause();
 }

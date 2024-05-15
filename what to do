@@ -19,9 +19,9 @@ Casos de uso requeridos:
 Casos de uso buenos de tener:
 1. Agregar un temporizador de cuenta regresiva para cada pregunta. DONE
 2. Permitir a los usuarios elegir una categoría o nivel de dificultad. DONE
-3. Seguir y mostrar las puntuaciones más altas utilizando localStorage.
-4. Utilizar animaciones para la transición entre preguntas.
-5. Implementar un concepto de comodín, por ejemplo, permitir a los usuarios "saltar" un cierto número de preguntas.
+4. Utilizar animaciones para la transición entre preguntas. DONE
 6. Integrar funcionalidad de registro/inicio de sesión para hacer un seguimiento de múltiples usuarios y sus respectivas puntuaciones.
+3. Seguir y mostrar las puntuaciones más altas utilizando localStorage.
+5. Implementar un concepto de comodín, por ejemplo, permitir a los usuarios "saltar" un cierto número de preguntas.
 7. Efectos de sonido o música de fondo para mejorar la experiencia del usuario.
 
