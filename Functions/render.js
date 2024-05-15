@@ -77,7 +77,7 @@ function renderGameScreen(gameState) {
     setTimeout(() => {
         screen.style.opacity = '1';
         screen.classList.add('fade-in');
-    }, 100);
+    }, 200);
 
     const temporizer = document.createElement("time");
     temporizer.textContent = '15';
