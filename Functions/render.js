@@ -34,6 +34,7 @@ async function renderDifficultyScreen(gameState) {
 
     buttons.forEach(button => {
         button.addEventListener('click', async () => {
+            playBackgroundMusic();
             const selectedDifficulty = button.id;
             setDifficulty(selectedDifficulty);
             await obtainGameStateQuestions();
@@ -54,7 +55,6 @@ function renderStartScreen(gameState) {
     const startButton = document.createElement('button');
     startButton.textContent = 'Start Game';
     startButton.addEventListener('click', () => {
-        playBackgroundMusic();
         startGame();
         render(gameState);
     });
