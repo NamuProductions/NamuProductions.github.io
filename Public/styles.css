@@ -3,14 +3,12 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-}
-body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
 }
+
 .popup {
     display: none;
     position: fixed;
@@ -29,35 +27,31 @@ body {
     font-size: 34px;
     z-index: 9999;
 }
+
 .container1 {
     display: inline-block;
     align-items: center;
     text-align: center;
     position: relative;
-    margin-right: 20px; /* Espacio entre las imágenes */
+    margin-right: 20px;
 }
 
 .overlay-text {
     position: absolute;
-    bottom: 50px; /* Ajusta la posición vertical del texto (10px desde la parte inferior) */
-    left: 50%; /* Centra horizontalmente el texto */
-    transform: translateX(-50%); /* Centra el texto horizontalmente */
-    color: orangered; /* Color del texto */
-    font-size: 39px; /* Tamaño de fuente del texto */
-    font-weight: bold; /* Peso de fuente del texto */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
-    padding: 5px 10px; /* Espaciado interno del texto */
-    border-radius: 5px; /* Borde redondeado */
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: orangered;
+    font-size: 39px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
 }
-
 
 .container {
     text-align: center;
-}
-
-
-.container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -104,13 +98,15 @@ input[type="submit"]:hover {
 
 .fade-in {
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    animation: fadeInAnimation 0.5s ease forwards;
 }
 
-.fade-in.active {
-    opacity: 1;
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
-
-
-
 
