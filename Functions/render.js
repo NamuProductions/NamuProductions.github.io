@@ -20,7 +20,7 @@ export function render(gameState) {
     }
 }
 
-function renderDifficultyScreen(gameState) {
+async function renderDifficultyScreen(gameState) {
     const difficulty = document.createElement('div');
     difficulty.innerHTML = `
     <div id="difficulties" class="container1">
@@ -42,6 +42,8 @@ function renderDifficultyScreen(gameState) {
     });
 
     root.appendChild(difficulty);
+
+
 
     async function obtainGameStateQuestions() {
         const questions = await fetchQuestions();
@@ -65,8 +67,17 @@ function renderGameScreen(gameState) {
     const messageElement = document.createElement('p');
     screen.appendChild(messageElement);
 
+
+
     showQuestion(screen, questionData.question);
     showOptions(screen, questionData.possibleAnswers);
+
+    screen.style.opacity = '0';
+
+    setTimeout(() => {
+        screen.style.opacity = '1';
+        screen.classList.add('fade-in');
+    }, 100);
 
     const temporizer = document.createElement("time");
     temporizer.textContent = '15';
@@ -102,6 +113,8 @@ function renderGameScreen(gameState) {
     });
 
     root.appendChild(screen);
+
+
 }
 
 function showQuestion(screen, question) {
