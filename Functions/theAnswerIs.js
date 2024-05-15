@@ -1,5 +1,3 @@
-import {updateScore} from "./updateScore.js";
-
 export function theAnswerIs(optionButton, currentQuestion, gameState) {
     const selectedOption = optionButton.textContent;
     const correctAnswer = currentQuestion.correctAnswer;
@@ -21,4 +19,8 @@ export function theAnswerIs(optionButton, currentQuestion, gameState) {
         isCorrect: isCorrect,
         correctAnswer: correctAnswer
     };
+}
+
+function updateScore(gameState, isCorrect) {
+    return isCorrect ? gameState.score + 1 : gameState.score;
 }
