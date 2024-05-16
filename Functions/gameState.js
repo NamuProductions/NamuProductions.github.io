@@ -1,6 +1,6 @@
 export const gameState = {
     selectedDifficulty: "",
-    gameStage: 'SELECT_DIFFICULTY',
+    gameStage: 'LOGIN',
     currentQuestionIndex: 0,
     score: 0,
     totalQuestions: 0,

@@ -2,14 +2,16 @@ import {nextQuestion, restartGame, setDifficulty, setQuestions, startGame} from 
 import {theAnswerIs} from "./theAnswerIs.js";
 import {questionByIndex} from "./questionByIndex.js";
 import {fetchQuestions} from "./fetchQuestions.js";
+import { registerUser, loginUser } from '../Public/main.js';
 
 const root = document.getElementById('root');
 
 export function render(gameState) {
     root.innerHTML = '';
-
-    if (gameState.gameStage === "SELECT_DIFFICULTY") {
-        renderDifficultyScreen(gameState)
+    if (gameState.gameStage === 'LOGIN') {
+        renderLoginScreen(gameState);
+    } else if (gameState.gameStage === "SELECT_DIFFICULTY") {
+        renderDifficultyScreen(gameState);
     } else if (gameState.gameStage === 'UN_STARTED') {
         renderStartScreen(gameState);
     } else if (gameState.gameStage === 'PLAYING') {
@@ -17,6 +19,42 @@ export function render(gameState) {
     } else if (gameState.gameStage === 'GAME_OVER') {
         renderGameOverScreen(gameState);
     }
+}
+
+function renderLoginScreen(gameState) {
+    const loginContainer = document.createElement('div');
+    loginContainer.innerHTML = `
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button id="login-button">Login</button>
+        <h2>Register</h2>
+        <input type="email" id="register-email" placeholder="Email">
+        <input type="password" id="register-password" placeholder="Password">
+        <button id="register-button">Register</button>
+    `;
+
+    loginContainer.querySelector('#login-button').addEventListener('click', async () => {
+        const email = loginContainer.querySelector('#login-email').value;
+        const password = loginContainer.querySelector('#login-password').value;
+        const user = await loginUser(email, password);
+        if (user) {
+            gameState.gameStage = "SELECT_DIFFICULTY";
+            render(gameState);
+        }
+    });
+
+    loginContainer.querySelector('#register-button').addEventListener('click', async () => {
+        const email = loginContainer.querySelector('#register-email').value;
+        const password = loginContainer.querySelector('#register-password').value;
+        const user = await registerUser(email, password);
+        if (user) {
+            gameState.gameStage = "SELECT_DIFFICULTY";
+            render(gameState);
+        }
+    });
+
+    root.appendChild(loginContainer);
 }
 
 async function renderDifficultyScreen(gameState) {
@@ -86,7 +124,6 @@ function renderGameScreen(gameState) {
     temporizer.textContent = '15';
     screen.appendChild(temporizer);
     let timeLeft = 15;
-
 
 
     const countdownInterval = setInterval(() => {
