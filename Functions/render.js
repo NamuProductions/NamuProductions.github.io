@@ -62,7 +62,8 @@ function renderStartScreen(gameState) {
 }
 
 function renderGameScreen(gameState) {
-
+    stopBackgroundMusic();
+    playQuestionMusic();
     const questionData = questionByIndex(gameState);
     const screen = document.createElement('div');
     const messageElement = document.createElement('p');
@@ -160,6 +161,7 @@ function renderGameOverScreen(gameState) {
     restartButton.classList.add('restart-button');
     restartButton.addEventListener('click', () => {
         restartGame();
+        stopQuestionMusic();
         location.reload();
     });
     screen.appendChild(restartButton);
@@ -173,7 +175,6 @@ const questionMusic = document.getElementById('question-music');
 const backgroundMusic = document.getElementById('background-music');
 
 function playBackgroundMusic() {
-    console.log('music');
     backgroundMusic.play();
 }
 
