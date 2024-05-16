@@ -34,6 +34,8 @@ async function renderDifficultyScreen(gameState) {
 
     buttons.forEach(button => {
         button.addEventListener('click', async () => {
+            backgroundMusic.volume = 0.2;
+            questionMusic.volume = 0.5;
             playBackgroundMusic();
             const selectedDifficulty = button.id;
             setDifficulty(selectedDifficulty);
