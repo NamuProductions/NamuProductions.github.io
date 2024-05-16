@@ -22,7 +22,7 @@ Casos de uso buenos de tener:
 4. Utilizar animaciones para la transición entre preguntas. DONE
 7. Efectos de sonido o música de fondo para mejorar la experiencia del usuario. DONE
 6. Integrar funcionalidad de registro/inicio de sesión para hacer un seguimiento de múltiples usuarios y sus respectivas puntuaciones.
-8. el tema de las puntuaciones, supongo que tendría que modificarse un poco, ya que ahora mismo es sólo un contador de preguntas respondidas, podríamos hacer que dependiendo de la dificultad cada pregunta respondida tenga un valor, y así podemos obtener una puntuación que podemos comparar entre usuarios por ejemplo
+8. el tema de las puntuaciones, supongo que tendría que modificarse un poco, dependiendo de la dificultad cada pregunta tenga un valor
 3. Seguir y mostrar las puntuaciones más altas utilizando localStorage.
 5. Implementar un concepto de comodín, por ejemplo, permitir a los usuarios "saltar" un cierto número de preguntas.
 

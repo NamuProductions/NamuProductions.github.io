@@ -203,6 +203,24 @@ function renderGameOverScreen(gameState) {
     scoreMessage.textContent = `Your score is: ${gameState.score} / ${gameState.totalQuestions}`;
     screen.appendChild(scoreMessage);
 
+    const scoreRef = firebase.database().ref('scores');
+    const currentDate = new Date().toISOString().split('T')[0];
+    scoreRef.push({ score: gameState.score, date: currentDate });
+
+    firebase.database().ref('scores').orderByChild('score').limitToLast(10).once('value', snapshot => {
+        const scores = snapshot.val();
+        const bestScores = document.createElement('div');
+        for (const key in scores) {
+            const scoreData = scores[key];
+            const scoreElement = document.createElement('p');
+            scoreElement.textContent = `Score: ${scoreData.score} - Date: ${scoreData.date}`;
+            bestScores.appendChild(scoreElement);
+        }
+        screen.appendChild(bestScores);
+    }).catch(error => {
+        console.error('Error fetching scores:', error);
+    });
+
     const restartButton = document.createElement('button');
     restartButton.textContent = 'New Game';
     restartButton.classList.add('restart-button');
@@ -213,9 +231,10 @@ function renderGameOverScreen(gameState) {
     screen.appendChild(restartButton);
 
     root.appendChild(screen);
-    return screen;
 
+    return screen;
 }
+
 
 const questionMusic = document.getElementById('question-music');
 const backgroundMusic = document.getElementById('background-music');
