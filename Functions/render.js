@@ -208,7 +208,7 @@ function renderGameOverScreen(gameState) {
     restartButton.classList.add('restart-button');
     restartButton.addEventListener('click', () => {
         restartGame();
-        location.reload();
+        render(gameState);
     });
     screen.appendChild(restartButton);
 
