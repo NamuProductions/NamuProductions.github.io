@@ -64,7 +64,7 @@ function renderStartScreen(gameState) {
 }
 
 function renderGameScreen(gameState) {
-    stopBackgroundMusic();
+    fadeOutMusic(backgroundMusic, 2000);
     playQuestionMusic();
     const questionData = questionByIndex(gameState);
     const screen = document.createElement('div');
@@ -86,6 +86,9 @@ function renderGameScreen(gameState) {
     temporizer.textContent = '15';
     screen.appendChild(temporizer);
     let timeLeft = 15;
+
+
+
     const countdownInterval = setInterval(() => {
         timeLeft--;
         temporizer.textContent = timeLeft.toString();
@@ -102,12 +105,14 @@ function renderGameScreen(gameState) {
     const nextButton = createNextButton(screen);
     nextButton.style.display = 'none';
     nextButton.addEventListener('click', () => {
+        clearInterval(countdownInterval);
         nextQuestion(gameState);
         render(gameState);
     });
 
     screen.querySelectorAll('.option-button').forEach(optionButton => {
         optionButton.addEventListener('click', () => {
+            clearInterval(countdownInterval);
             temporizer.style.display = 'none';
             const result = theAnswerIs(optionButton, questionData, gameState);
             showAnswer(screen, result);
@@ -151,6 +156,7 @@ function showAnswer(screen, result) {
 
 
 function renderGameOverScreen(gameState) {
+    fadeOutMusic(questionMusic, 4000);
     const screen = document.createElement('div');
     screen.classList.add('end-screen');
 
@@ -163,7 +169,6 @@ function renderGameOverScreen(gameState) {
     restartButton.classList.add('restart-button');
     restartButton.addEventListener('click', () => {
         restartGame();
-        stopQuestionMusic();
         location.reload();
     });
     screen.appendChild(restartButton);
@@ -180,14 +185,30 @@ function playBackgroundMusic() {
     backgroundMusic.play();
 }
 
-function stopBackgroundMusic() {
-    backgroundMusic.pause();
-}
+// function stopBackgroundMusic() {
+//     backgroundMusic.pause();
+// }
 
 function playQuestionMusic() {
     questionMusic.play();
 }
 
-function stopQuestionMusic() {
-    questionMusic.pause();
+// function stopQuestionMusic() {
+//     questionMusic.pause();
+// }
+
+function fadeOutMusic(audioElement, duration) {
+    const fadeOutInterval = 50;
+    const fadeOutSteps = duration / fadeOutInterval;
+    const fadeOutStep = audioElement.volume / fadeOutSteps;
+
+    const fadeOut = setInterval(() => {
+        if (audioElement.volume > fadeOutStep) {
+            audioElement.volume -= fadeOutStep;
+        } else {
+            clearInterval(fadeOut);
+            audioElement.pause();
+            audioElement.volume = 1.0;
+        }
+    }, fadeOutInterval);
 }
