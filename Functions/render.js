@@ -35,6 +35,7 @@ function renderLoginScreen(gameState) {
     `;
 
     loginContainer.querySelector('#login-button').addEventListener('click', async () => {
+
         const email = loginContainer.querySelector('#login-email').value;
         const password = loginContainer.querySelector('#login-password').value;
         const user = await loginUser(email, password);
@@ -58,6 +59,9 @@ function renderLoginScreen(gameState) {
 }
 
 async function renderDifficultyScreen(gameState) {
+    backgroundMusic.volume = 0.2;
+    questionMusic.volume = 0.5;
+    playBackgroundMusic();
     const difficulty = document.createElement('div');
     difficulty.innerHTML = `
     <div id="difficulties" class="container1">
@@ -72,9 +76,7 @@ async function renderDifficultyScreen(gameState) {
 
     buttons.forEach(button => {
         button.addEventListener('click', async () => {
-            backgroundMusic.volume = 0.2;
-            questionMusic.volume = 0.5;
-            playBackgroundMusic();
+
             const selectedDifficulty = button.id;
             setDifficulty(selectedDifficulty);
             await obtainGameStateQuestions();

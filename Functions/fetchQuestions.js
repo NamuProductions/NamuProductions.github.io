@@ -3,6 +3,13 @@ import {gameState} from "./gameState.js";
 export async function fetchQuestions() {
     let numberOfQuestions = 3;
     const difficulty = gameState.selectedDifficulty.toLowerCase();
+    if (difficulty === 'easy') {
+        numberOfQuestions = 5;
+    } else if (difficulty === 'medium') {
+        numberOfQuestions = 8;
+    } else if (difficulty === 'hard') {
+        numberOfQuestions = 10;
+    }
     try {
         const response = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=10&difficulty=${difficulty}&type=multiple`);
         if (!response.ok) {
