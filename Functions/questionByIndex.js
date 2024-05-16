@@ -15,10 +15,20 @@ export function questionByIndex(gameState) {
     const possibleAnswers = [...questionData.incorrect_answers, correctAnswer];
     const totalQuestions = gameState.questions.length;
 
+    const allAnswers = shuffleArray([...possibleAnswers]);
+
     return {
         question: questionText,
         correctAnswer: correctAnswer,
-        possibleAnswers: possibleAnswers,
+        possibleAnswers: allAnswers,
         totalQuestions: totalQuestions
     };
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
