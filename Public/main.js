@@ -20,6 +20,7 @@ export async function loginUser(email, password) {
         return null;
     }
 }
+
 async function init() {
     try {
         render(gameState);
