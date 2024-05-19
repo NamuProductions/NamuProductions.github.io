@@ -47,7 +47,7 @@ function renderLoginScreen(gameState) {
         const user = await loginUser(email, password);
         if (user) {
             gameState.gameStage = "SELECT_DIFFICULTY";
-            render(gameState);
+            await render(gameState);
         }
     });
 
@@ -57,7 +57,7 @@ function renderLoginScreen(gameState) {
         const user = await registerUser(email, password);
         if (user) {
             gameState.gameStage = "SELECT_DIFFICULTY";
-            render(gameState);
+            await render(gameState);
         }
     });
 
@@ -85,7 +85,7 @@ async function renderDifficultyScreen(gameState) {
             setDifficulty(selectedDifficulty);
             setWildCards(selectedDifficulty);
             await obtainGameStateQuestions();
-            render(gameState);
+            await render(gameState);
         });
     });
 
@@ -100,9 +100,9 @@ async function renderDifficultyScreen(gameState) {
 function renderStartScreen(gameState) {
     const startButton = document.createElement('button');
     startButton.textContent = 'Start Game';
-    startButton.addEventListener('click', () => {
+    startButton.addEventListener('click', async () => {
         startGame();
-        render(gameState);
+        await render(gameState);
     });
     root.appendChild(startButton);
 }
@@ -146,10 +146,10 @@ function renderGameScreen(gameState) {
 
     const nextButton = createNextButton(screen);
     nextButton.style.display = 'none';
-    nextButton.addEventListener('click', () => {
+    nextButton.addEventListener('click', async () => {
         clearInterval(countdownInterval);
         nextQuestion(gameState);
-        render(gameState);
+        await render(gameState);
     });
 
     screen.querySelectorAll('.option-button').forEach(optionButton => {
@@ -170,11 +170,11 @@ function showWildCards(screen, gameState) {
         wildCardButton.textContent = `WildCards (${gameState.wildCards})`;
         wildCardButton.classList.add('wildcard-button');
 
-        wildCardButton.addEventListener('click', () => {
+        wildCardButton.addEventListener('click', async() => {
             if (gameState.wildCards > 0) {
                 gameState.wildCards--;
                 nextQuestion(gameState);
-                render(gameState);
+                await render(gameState);
             }
         });
 
