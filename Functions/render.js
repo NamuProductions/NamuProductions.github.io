@@ -164,13 +164,14 @@ function renderGameScreen(gameState) {
 
     root.appendChild(screen);
 }
+
 function showWildCards(screen, gameState) {
     if (gameState.wildCards > 0) {
         const wildCardButton = document.createElement("button");
         wildCardButton.textContent = `WildCards (${gameState.wildCards})`;
         wildCardButton.classList.add('wildcard-button');
 
-        wildCardButton.addEventListener('click', async() => {
+        wildCardButton.addEventListener('click', async () => {
             if (gameState.wildCards > 0) {
                 gameState.wildCards--;
                 nextQuestion(gameState);
@@ -221,7 +222,7 @@ async function renderGameOverScreen(gameState) {
 
     const scoreRef = firebase.database().ref('scores');
     const currentDate = new Date().toISOString().split('T')[0];
-    scoreRef.push({ userId, score: gameState.score, date: currentDate });
+    scoreRef.push({userId, score: gameState.score, date: currentDate});
 
     const scoresSnapshot = await fetchScores();
 
@@ -229,7 +230,7 @@ async function renderGameOverScreen(gameState) {
     screen.classList.add('end-screen');
 
     const scoreMessage = document.createElement('h2');
-    scoreMessage.textContent = `Your score is: ${gameState.score} / ${gameState.totalQuestions}`;
+    scoreMessage.textContent = `Your score is: ${gameState.score} / ${totalPoints(gameState)}`;
     screen.appendChild(scoreMessage);
 
     if (scoresSnapshot) {
@@ -284,6 +285,22 @@ async function renderGameOverScreen(gameState) {
 
     screen.appendChild(restartButton);
     root.appendChild(screen);
+}
+
+function totalPoints(gameState) {
+    if (gameState.selectedDifficulty) {
+        switch (gameState.selectedDifficulty.toLowerCase()) {
+            case 'easy':
+                return 5;
+            case 'medium':
+                return 16;
+            case 'hard':
+                return 30;
+            default:
+                console.error('Unknown selected Difficulty:', gameState.selectedDifficulty);
+        }
+    }
+    return 0;
 }
 
 function sortScores(scores) {
