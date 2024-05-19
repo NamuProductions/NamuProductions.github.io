@@ -1,4 +1,11 @@
-import {nextQuestion, restartGame, setDifficulty, setQuestions, setWildCards, startGame} from './gameState.js';
+import {
+    nextQuestion,
+    restartGame,
+    setDifficulty,
+    setQuestions,
+    setWildCards,
+    startGame
+} from './gameState.js';
 import {theAnswerIs} from "./theAnswerIs.js";
 import {questionByIndex} from "./questionByIndex.js";
 import {fetchQuestions} from "./fetchQuestions.js";
@@ -110,6 +117,7 @@ function renderGameScreen(gameState) {
 
     showQuestion(screen, questionData.question);
     showOptions(screen, questionData.possibleAnswers);
+    showWildCards(screen, gameState);
 
     screen.style.opacity = '0';
 
@@ -156,6 +164,24 @@ function renderGameScreen(gameState) {
 
     root.appendChild(screen);
 }
+function showWildCards(screen, gameState) {
+    if (gameState.wildCards > 0) {
+        const wildCardButton = document.createElement("button");
+        wildCardButton.textContent = `WildCards (${gameState.wildCards})`;
+        wildCardButton.classList.add('wildcard-button');
+
+        wildCardButton.addEventListener('click', () => {
+            if (gameState.wildCards > 0) {
+                gameState.wildCards--;
+                nextQuestion(gameState);
+                render(gameState);
+            }
+        });
+
+        screen.appendChild(wildCardButton);
+    }
+}
+
 
 function showQuestion(screen, question) {
     const questionElement = document.createElement('h1');
