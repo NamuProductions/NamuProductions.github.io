@@ -189,6 +189,7 @@ function createNextButton(screen) {
 
 function showAnswer(screen, result) {
     const answer = document.createElement('p');
+    answer.classList.add('answer');
     answer.textContent = result.isCorrect ? 'Correct!' : `Wrong! The correct answer is: ${result.correctAnswer}`;
     screen.appendChild(answer);
 }
@@ -210,12 +211,40 @@ function renderGameOverScreen(gameState) {
     firebase.database().ref('scores').orderByChild('score').limitToLast(10).once('value', snapshot => {
         const scores = snapshot.val();
         const bestScores = document.createElement('div');
+        bestScores.id = 'tenBestScores';
+
+        const table = document.createElement('table');
+        table.classList.add('scores-table');
+
+        const tableTitle = document.createElement('h2');
+        tableTitle.textContent = '10 Best Scores';
+        bestScores.appendChild(tableTitle);
+
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = `
+            <th>User ID</th>
+            <th>Score</th>
+            <th>Date</th>
+        `;
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+
         for (const key in scores) {
             const scoreData = scores[key];
-            const scoreElement = document.createElement('p');
-            scoreElement.textContent = `Score: ${scoreData.score} - Date: ${scoreData.date}`;
-            bestScores.appendChild(scoreElement);
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${key}</td>
+                <td>${scoreData.score}</td>
+                <td>${scoreData.date}</td>
+            `;
+            tbody.appendChild(row);
         }
+
+        table.appendChild(tbody);
+        bestScores.appendChild(table);
         screen.appendChild(bestScores);
     }).catch(error => {
         console.error('Error fetching scores:', error);
@@ -234,6 +263,7 @@ function renderGameOverScreen(gameState) {
 
     return screen;
 }
+
 
 
 const questionMusic = document.getElementById('question-music');
