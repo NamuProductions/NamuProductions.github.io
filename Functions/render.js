@@ -170,9 +170,9 @@ function showWildCards(screen, gameState) {
         const wildCardButton = document.createElement("button");
         wildCardButton.textContent = `WildCards (${gameState.wildCards})`;
         wildCardButton.classList.add('wildcard-button');
-
         wildCardButton.addEventListener('click', async () => {
-            if (gameState.wildCards > 0) {
+            const nextButton = document.querySelector('.next-button');
+            if (gameState.wildCards > 0 && (!nextButton || nextButton.style.display === 'none')) {
                 gameState.wildCards--;
                 nextQuestion(gameState);
                 await render(gameState);
