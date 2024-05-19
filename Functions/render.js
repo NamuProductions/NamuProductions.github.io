@@ -13,18 +13,18 @@ import {loginUser, registerUser} from '../Public/main.js';
 
 const root = document.getElementById('root');
 
-export function render(gameState) {
+export async function render(gameState) {
     root.innerHTML = '';
     if (gameState.gameStage === 'LOGIN') {
         renderLoginScreen(gameState);
     } else if (gameState.gameStage === "SELECT_DIFFICULTY") {
-        renderDifficultyScreen(gameState);
+        await renderDifficultyScreen(gameState);
     } else if (gameState.gameStage === 'UN_STARTED') {
         renderStartScreen(gameState);
     } else if (gameState.gameStage === 'PLAYING') {
         renderGameScreen(gameState);
     } else if (gameState.gameStage === 'GAME_OVER') {
-        renderGameOverScreen(gameState);
+        await renderGameOverScreen(gameState);
     }
 }
 
