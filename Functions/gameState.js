@@ -4,7 +4,8 @@ export const gameState = {
     currentQuestionIndex: 0,
     score: 0,
     totalQuestions: 0,
-    questions: []
+    questions: [],
+    wildCards: 0
 };
 
 export function setQuestions(questions) {
@@ -45,5 +46,24 @@ export function setDifficulty(difficulty) {
     } else {
         gameState.selectedDifficulty = difficulty;
         gameState.gameStage = 'UN_STARTED';
+    }
+}
+
+export function setWildCards(difficulty) {
+    if (difficulty) {
+        switch (gameState.selectedDifficulty.toLowerCase()) {
+            case 'easy':
+                gameState.wildCards = 1;
+                break;
+            case 'medium':
+                gameState.wildCards = 2;
+                break;
+            case 'hard':
+                gameState.wildCards = 3;
+                break;
+            default:
+                console.error('Unknown difficulty:', gameState.selectedDifficulty);
+                break;
+        }
     }
 }

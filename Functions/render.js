@@ -1,4 +1,4 @@
-import {nextQuestion, restartGame, setDifficulty, setQuestions, startGame} from './gameState.js';
+import {nextQuestion, restartGame, setDifficulty, setQuestions, setWildCards, startGame} from './gameState.js';
 import {theAnswerIs} from "./theAnswerIs.js";
 import {questionByIndex} from "./questionByIndex.js";
 import {fetchQuestions} from "./fetchQuestions.js";
@@ -76,6 +76,7 @@ async function renderDifficultyScreen(gameState) {
         button.addEventListener('click', async () => {
             const selectedDifficulty = button.id;
             setDifficulty(selectedDifficulty);
+            setWildCards(selectedDifficulty);
             await obtainGameStateQuestions();
             render(gameState);
         });
