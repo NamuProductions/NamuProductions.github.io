@@ -225,12 +225,11 @@ async function renderGameOverScreen(gameState) {
             <th>Score</th>
         `;
         thead.appendChild(headerRow);
-        table.appendChild(thead);
 
         const tbody = document.createElement('tbody');
+        const sortedScores = sortScores(scores);
 
-        for (const key in scores) {
-            const scoreData = scores[key];
+        sortedScores.forEach(scoreData => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${scoreData.date}</td>
@@ -238,8 +237,9 @@ async function renderGameOverScreen(gameState) {
                 <td>${scoreData.score}</td>
             `;
             tbody.appendChild(row);
-        }
+        });
 
+        table.appendChild(thead);
         table.appendChild(tbody);
         bestScores.appendChild(table);
         screen.appendChild(bestScores);
@@ -259,14 +259,31 @@ async function renderGameOverScreen(gameState) {
     root.appendChild(screen);
 }
 
+function sortScores(scores) {
+    const scoreArray = Object.entries(scores).map(([key, scoreData]) => ({
+        ...scoreData,
+        key
+    }));
+
+    scoreArray.sort((a, b) => {
+        if (a.score === b.score) {
+            return new Date(b.date) - new Date(a.date);
+        }
+        return b.score - a.score;
+    });
+
+    return scoreArray.slice(0, 10);
+}
+
 async function fetchScores() {
     try {
-        return await firebase.database().ref('scores').orderByChild('score').limitToLast(10).once('value');
+        return await firebase.database().ref('scores').once('value');
     } catch (error) {
         console.error('Error fetching scores:', error);
         return null;
     }
 }
+
 
 const questionMusic = document.getElementById('question-music');
 const backgroundMusic = document.getElementById('background-music');
