@@ -7,35 +7,51 @@ export function theAnswerIs(optionButton, currentQuestion, gameState) {
 
     if (isCorrect) {
         console.log('Correct ' + correctAnswer);
-        gameState.score = updateScore(gameState, isCorrect);
     } else {
         console.log(selectedOption + ' is wrong, the correct answer is: ' + correctAnswer);
     }
+
+    gameState.score = updateScore(gameState, isCorrect);
 
     const optionButtons = document.querySelectorAll('.option-button');
     optionButtons.forEach(button => {
         button.disabled = true;
     });
 
-   return {
+    return {
         isCorrect: isCorrect,
         correctAnswer: correctAnswer
     };
 }
 
 function updateScore(gameState, isCorrect) {
-    let scoreIncrease = 0;
+    let scoreChange = 0;
 
     if (isCorrect) {
         switch (gameState.selectedDifficulty.toLowerCase()) {
             case 'easy':
-                scoreIncrease = 1;
+                scoreChange = 1;
                 break;
             case 'medium':
-                scoreIncrease = 2;
+                scoreChange = 2;
                 break;
             case 'hard':
-                scoreIncrease = 3;
+                scoreChange = 3;
+                break;
+            default:
+                console.error('Unknown difficulty:', gameState.selectedDifficulty);
+                break;
+        }
+    } else {
+        switch (gameState.selectedDifficulty.toLowerCase()) {
+            case 'easy':
+                scoreChange = -1;
+                break;
+            case 'medium':
+                scoreChange = -2;
+                break;
+            case 'hard':
+                scoreChange = -3;
                 break;
             default:
                 console.error('Unknown difficulty:', gameState.selectedDifficulty);
@@ -43,5 +59,5 @@ function updateScore(gameState, isCorrect) {
         }
     }
 
-    return gameState.score + scoreIncrease;
+    return gameState.score + scoreChange;
 }
